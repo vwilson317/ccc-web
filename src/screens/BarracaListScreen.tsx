@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { 
   View, 
-  FlatList, 
   ActivityIndicator, 
   Text, 
   SafeAreaView, 
   RefreshControl,
   Animated,
-  ImageBackground,
-  Dimensions,
   StatusBar
 } from 'react-native';
 import { SearchBar } from '../components/SearchBar';
-import { BarracaCard } from '../components/RestaurantCard';
-import { getBarracas, initializeSampleData } from '../services/restaurantService';
+import { BarracaCard } from '../components/BarracaCard';
+import { getBarracas, initializeSampleData } from '../services/barracaService';
 import { Barraca } from '../types/restaurant';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -32,22 +29,11 @@ export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const scrollY = new Animated.Value(0);
 
-  useEffect(() => {
-    const initialize = async () => {
-      try {
-        await initializeSampleData(); // Initialize sample data if needed
-        await loadBarracas();
-      } catch (error) {
-        console.error('Error initializing:', error);
-      }
-    };
-    
-    initialize();
-  }, []);
-
   const loadBarracas = async () => {
     try {
+      console.log('Loading barracas...');
       const data = await getBarracas({ searchQuery });
+      console.log('Loaded barracas:', data);
       setBarracas(data);
     } catch (error) {
       console.error('Error loading barracas:', error);
@@ -56,6 +42,21 @@ export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
       setRefreshing(false);
     }
   };
+
+  useEffect(() => {
+    const initialize = async () => {
+      try {
+        console.log('Initializing...');
+        await initializeSampleData();
+        await loadBarracas();
+      } catch (error) {
+        console.error('Error during initialization:', error);
+        setLoading(false);
+      }
+    };
+    
+    initialize();
+  }, []);
 
   const handleSearch = (text: string) => {
     setSearchQuery(text);
@@ -67,29 +68,7 @@ export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
     loadBarracas();
   };
 
-  const headerHeight = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-    extrapolate: 'clamp',
-  });
-
-  const imageOpacity = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [1, 0.5, 0],
-    extrapolate: 'clamp',
-  });
-
-  const imageTranslate = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, -50],
-    extrapolate: 'clamp',
-  });
-
-  const titleScale = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [1, 0.8, 0.7],
-    extrapolate: 'clamp',
-  });
+  // ... header animation interpolations ...
 
   if (loading) {
     return (
@@ -98,6 +77,8 @@ export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
       </View>
     );
   }
+
+  console.log('Rendering barracas:', barracas);
 
   return (
     <SafeAreaView className="flex-1 bg-primary-50">
@@ -174,15 +155,15 @@ export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
             placeholder="Search barracas..."
           />
           
-          {barracas.map((item) => (
-            <BarracaCard
-              key={item.id}
-              barraca={item}
-              onPress={() => navigation.navigate('BarracaDetail', { barracaId: item.id })}
-            />
-          ))}
-          
-          {barracas.length === 0 && (
+          {barracas.length > 0 ? (
+            barracas.map((item) => (
+              <BarracaCard
+                key={item.id}
+                barraca={item}
+                onPress={() => navigation.navigate('BarracaDetail', { barracaId: item.id })}
+              />
+            ))
+          ) : (
             <View className="flex-1 justify-center items-center py-20">
               <Text className="text-primary-400 text-lg">
                 No barracas found
