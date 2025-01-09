@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { MenuItem as MenuItemType } from '../types/restaurant';
+import { MenuItem as MenuItemType } from '../types/barraca';
 
 interface MenuItemProps {
   item: MenuItemType;

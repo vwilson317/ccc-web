@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Restaurant } from '../types/restaurant';
+import { Barraca } from '../types/barraca';
 
-interface RestaurantCardProps {
-  restaurant: Restaurant;
+interface BarracaCardProps {
+  barraca: Barraca;
   onPress: () => void;
 }
 
-export const RestaurantCard: React.FC<RestaurantCardProps> = ({
-  restaurant,
+export const BarracaCard: React.FC<BarracaCardProps> = ({
+  barraca,
   onPress,
 }) => {
   return (
@@ -18,23 +18,23 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
       onPress={onPress}
     >
       <Image
-        source={{ uri: restaurant.imageUrl }}
+        source={{ uri: barraca.imageUrl }}
         className="w-full h-48 rounded-t-lg"
         resizeMode="cover"
       />
       <View className="p-4">
         <View className="flex-row justify-between items-center">
-          <Text className="text-lg font-bold">{restaurant.name}</Text>
+          <Text className="text-lg font-bold">{barraca.name}</Text>
           <View className="flex-row items-center">
             <Ionicons name="star" size={16} color="#FFD700" />
-            <Text className="ml-1">{restaurant.rating.toFixed(1)}</Text>
+            <Text className="ml-1">{barraca.rating.toFixed(1)}</Text>
           </View>
         </View>
-        <Text className="text-gray-600 mt-1">{restaurant.cuisine}</Text>
+        <Text className="text-gray-600 mt-1">{barraca.cuisine}</Text>
         <View className="flex-row justify-between items-center mt-2">
-          <Text className="text-gray-500">{restaurant.priceRange}</Text>
-          <Text className={`${restaurant.isOpen ? 'text-green-500' : 'text-red-500'}`}>
-            {restaurant.isOpen ? 'Open' : 'Closed'}
+          <Text className="text-gray-500">{barraca.priceRange}</Text>
+          <Text className={`${barraca.isOpen ? 'text-green-500' : 'text-red-500'}`}>
+            {barraca.isOpen ? 'Open' : 'Closed'}
           </Text>
         </View>
       </View>

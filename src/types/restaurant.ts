@@ -1,4 +1,4 @@
-export interface Restaurant {
+export interface Barraca {
   id: string;
   name: string;
   description: string;
@@ -8,7 +8,7 @@ export interface Restaurant {
   rating: number;
   priceRange: '€' | '€€' | '€€€';
   isOpen: boolean;
-  menuUrl?: string; // PDF menu URL if available
+  menuUrl?: string;
 }
 
 export interface MenuItem {
@@ -26,7 +26,7 @@ export interface MenuCategory {
   items: MenuItem[];
 }
 
-export interface RestaurantFilters {
+export interface BarracaFilters {
   searchQuery: string;
   cuisine?: string;
   priceRange?: string;

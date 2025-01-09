@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { SignInScreen } from './src/screens/auth/SignInScreen';
 import { SignUpScreen } from './src/screens/auth/SignUpScreen';
-import { BarracaListScreen } from './src/screens/BarracaListScreen';
-import { BarracaDetailScreen } from './src/screens/BarracaDetailScreen';
+import { BarracaListScreen } from './src/screens/RestaurantListScreen';
+import { BarracaDetailScreen } from './src/screens/RestaurantDetailScreen';
 import { useAuth } from './src/contexts/AuthContext';
 
 const Stack = createNativeStackNavigator();
@@ -15,24 +15,27 @@ function Navigation() {
 
   return (
     <Stack.Navigator>
-      {user ? (
-        // Authenticated stack
-        <>
-          <Stack.Screen 
-            name="BarracaList" 
-            component={BarracaListScreen}
-            options={{ title: 'Barracas' }}
-          />
-          <Stack.Screen 
-            name="BarracaDetail" 
-            component={BarracaDetailScreen}
-            options={({ route }) => ({ 
-              title: 'Barraca Details'
-            })}
-          />
-        </>
-      ) : (
-        // Auth stack
+      {/* Public screens - always accessible */}
+      <Stack.Screen 
+        name="BarracaList" 
+        component={BarracaListScreen}
+        options={{ 
+          headerShown: false 
+        }}
+      />
+      <Stack.Screen 
+        name="BarracaDetail" 
+        component={BarracaDetailScreen}
+        options={{ 
+          headerTransparent: true,
+          headerTitle: '',
+          headerBackTitle: '',
+          headerTintColor: '#fff'
+        }}
+      />
+
+      {/* Auth screens - only shown when not logged in */}
+      {!user && (
         <>
           <Stack.Screen 
             name="SignIn" 

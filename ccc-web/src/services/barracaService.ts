@@ -1,11 +1,11 @@
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseConfig';
-import { Restaurant, RestaurantFilters, MenuItem } from '../types/restaurant';
+import { Barraca, BarracaFilters, MenuItem } from '../types/barraca';
 
-export const getRestaurants = async (filters?: RestaurantFilters): Promise<Restaurant[]> => {
+export const getBarracas = async (filters?: BarracaFilters): Promise<Barraca[]> => {
   try {
-    const restaurantsRef = collection(db, 'restaurants');
-    let q = query(restaurantsRef);
+    const barracasRef = collection(db, 'barracas');
+    let q = query(barracasRef);
 
     // Apply filters if they exist
     if (filters?.cuisine) {
@@ -19,44 +19,44 @@ export const getRestaurants = async (filters?: RestaurantFilters): Promise<Resta
     }
 
     const querySnapshot = await getDocs(q);
-    const restaurants = querySnapshot.docs.map(doc => ({
+    const barracas = querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    })) as Restaurant[];
+    })) as Barraca[];
 
     // Apply text search filter (client-side)
     if (filters?.searchQuery) {
-      return restaurants.filter(restaurant =>
-        restaurant.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        restaurant.cuisine.toLowerCase().includes(filters.searchQuery.toLowerCase())
+      return barracas.filter(barraca =>
+        barraca.name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        barraca.cuisine.toLowerCase().includes(filters.searchQuery.toLowerCase())
       );
     }
 
-    return restaurants;
+    return barracas;
   } catch (error) {
-    console.error('Error fetching restaurants:', error);
+    console.error('Error fetching barracas:', error);
     return [];
   }
 };
 
-export const getRestaurantById = async (id: string): Promise<Restaurant | null> => {
+export const getBarracaById = async (id: string): Promise<Barraca | null> => {
   try {
-    const docRef = doc(db, 'restaurants', id);
+    const docRef = doc(db, 'barracas', id);
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() } as Restaurant;
+      return { id: docSnap.id, ...docSnap.data() } as Barraca;
     }
     return null;
   } catch (error) {
-    console.error('Error fetching restaurant:', error);
+    console.error('Error fetching barraca:', error);
     return null;
   }
 };
 
-export const getMenuItems = async (restaurantId: string): Promise<MenuItem[]> => {
+export const getMenuItems = async (barracaId: string): Promise<MenuItem[]> => {
   try {
-    const menuRef = collection(db, 'restaurants', restaurantId, 'menu');
+    const menuRef = collection(db, 'barracas', barracaId, 'menu');
     const querySnapshot = await getDocs(menuRef);
     
     return querySnapshot.docs.map(doc => ({

@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
 import { SearchBar } from '../components/SearchBar';
-import { RestaurantCard } from '../components/RestaurantCard';
-import { getRestaurants } from '../services/restaurantService';
-import { Restaurant } from '../types/restaurant';
+import { BarracaCard } from '../components/BarracaCard';
+import { getBarracas } from '../services/barracaService';
+import { Barraca } from '../types/barraca';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
   navigation: NativeStackNavigationProp<any>;
 };
 
-export const RestaurantListScreen: React.FC<Props> = ({ navigation }) => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+export const BarracaListScreen: React.FC<Props> = ({ navigation }) => {
+  const [barracas, setBarracas] = useState<Barraca[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadRestaurants();
+    loadBarracas();
   }, []);
 
-  const loadRestaurants = async () => {
+  const loadBarracas = async () => {
     try {
-      const data = await getRestaurants({ searchQuery });
-      setRestaurants(data);
+      const data = await getBarracas({ searchQuery });
+      setBarracas(data);
     } catch (error) {
-      console.error('Error loading restaurants:', error);
+      console.error('Error loading Barracas:', error);
     } finally {
       setLoading(false);
     }
@@ -32,7 +32,7 @@ export const RestaurantListScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleSearch = (text: string) => {
     setSearchQuery(text);
-    loadRestaurants();
+    loadBarracas();
   };
 
   if (loading) {
@@ -50,11 +50,11 @@ export const RestaurantListScreen: React.FC<Props> = ({ navigation }) => {
         onChangeText={handleSearch}
       />
       <FlatList
-        data={restaurants}
+        data={barracas}
         renderItem={({ item }) => (
-          <RestaurantCard
-            restaurant={item}
-            onPress={() => navigation.navigate('RestaurantDetail', { restaurantId: item.id })}
+          <BarracaCard
+            barraca={item}
+            onPress={() => navigation.navigate('BarracaDetail', { barracaId: item.id })}
           />
         )}
         keyExtractor={(item) => item.id}

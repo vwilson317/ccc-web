@@ -11,7 +11,7 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
-  placeholder = 'Search restaurants...'
+  placeholder = 'Search barracas...'
 }) => {
   return (
     <View className="flex-row items-center bg-gray-100 rounded-full px-4 py-2 mx-4 my-2">
