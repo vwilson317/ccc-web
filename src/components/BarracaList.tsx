@@ -21,20 +21,20 @@ export const barracas: Barraca[] = [
     id: 1,
     title: "Uruguay (#80)",
     description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
-    imageUrl: '../assets/barraca-80.jpg',
+    imageUrl: '/assets/barraca-80.jpg',
     hours: [
       { date: "2025-01-20", open: "00:00", close: "23:59" },
       { date: "2025-01-21", open: "09:00", close: "17:00" },
       { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ],
-    menuUri: "../assets/80-menu.jpg"
+    menuUri: "/assets/80-menu.jpg"
   },
   {
     id: 2,
     title: "Rasta (#20)",
     description: "Another one of our favorites. If you're in leme it's always a good vibe.",
-    imageUrl: '../assets/20-default.jpeg',
+    imageUrl: '/assets/20-default.jpeg',
     hours: [
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ]
@@ -44,7 +44,7 @@ export const barracas: Barraca[] = [
     title: "Testing (#0)",
     description: `Mock barraca, not real. Just testing if most of the info is missing for a barraca. 
     might make sense to not display it i there's no menu or operating hours.`,
-    imageUrl: "../assets/oh-crap.png"
+    imageUrl: "/assets/oh-crap.png"
   }
 ];
 

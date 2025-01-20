@@ -94,7 +94,7 @@ export const BarracaDetail = () => {
                   {barraca.hours.map((hour, index) => (
                     <div key={index} className="flex justify-between border-b py-2">
                       <span className="font-medium">
-                        {new Date(hour.date).toLocaleDateString('en-US', { weekday: 'long' })}
+                        {new Date(hour.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
                       </span>
                       <span>{hour.open} - {hour.close}</span>
                     </div>
@@ -107,7 +107,7 @@ export const BarracaDetail = () => {
           {/* Image Section */}
           <div className="mb-6 md:mb-0">
             <img 
-              src={barraca.imageUrl} 
+              src={new URL(barraca.imageUrl, import.meta.url).href} 
               alt={barraca.title}
               className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition-opacity"
             //   onClick={() => handleImageClick(barraca.imageUrl)}
