@@ -15,6 +15,7 @@ export default defineConfig({
     outDir: 'dist'
   },
   publicDir: 'public',  // This will copy the entire assets directory
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
