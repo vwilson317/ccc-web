@@ -1,12 +1,12 @@
 import { ParallaxHero } from './components/ParallaxHero'
-import { ItemList } from './components/ItemList'
+import { BarracaList } from './components/BarracaList'
 import './App.css'
 
 function App() {
   return (
     <main className="min-h-screen">
       <ParallaxHero />
-      <ItemList />
+      <BarracaList />
     </main>
   )
 }

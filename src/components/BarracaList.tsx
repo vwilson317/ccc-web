@@ -1,15 +1,15 @@
-interface Item {
+interface Barraca {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
 }
 
-const items: Item[] = [
+const items: Barraca[] = [
   {
     id: 1,
-    title: "Item One",
-    description: "This is a detailed description of item one. It showcases the product's features and benefits.",
+    title: "Uruguay (#80)",
+    description: "Creators personal favorite. They're always super friendly and wont rip gringos off :)",
     imageUrl: "/item1.jpg"
   },
   {
@@ -26,7 +26,7 @@ const items: Item[] = [
   }
 ];
 
-export const ItemList = () => {
+export const BarracaList = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="space-y-12">
