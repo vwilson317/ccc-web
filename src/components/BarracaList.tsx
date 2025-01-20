@@ -18,7 +18,7 @@ interface Barraca {
 
 export const barracas: Barraca[] = [
   {
-    id: 1,
+    id: 80,
     title: "Uruguay (#80)",
     description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
     imageUrl: '/assets/barraca-80.jpg',
@@ -31,7 +31,7 @@ export const barracas: Barraca[] = [
     menuUri: "/assets/80-menu.jpg"
   },
   {
-    id: 2,
+    id: 20,
     title: "Rasta (#20)",
     description: "Another one of our favorites. If you're in leme it's always a good vibe.",
     imageUrl: '/assets/20-default.jpeg',
@@ -40,7 +40,7 @@ export const barracas: Barraca[] = [
     ]
   },
   {
-    id: 3,
+    id: 0,
     title: "Testing (#0)",
     description: `Mock barraca, not real. Just testing if most of the info is missing for a barraca. 
     might make sense to not display it i there's no menu or operating hours.`,
