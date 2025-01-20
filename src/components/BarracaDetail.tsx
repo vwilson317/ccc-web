@@ -27,7 +27,7 @@ export const BarracaDetail = () => {
         <Link to="/" className="text-blue-500 hover:text-blue-700">
           ← Back to all barracas
         </Link>
-      {barraca.menuUri ? (
+        {barraca.menuUri ? (
           <a 
             href={barraca.menuUri}
             target="_blank"
@@ -70,40 +70,50 @@ export const BarracaDetail = () => {
       </div>
       
       <div className="max-w-4xl mx-auto">
-        <img 
-          src={barraca.imageUrl} 
-          alt={barraca.title}
-          className="w-full h-96 object-cover rounded-lg shadow-lg mb-8"
-        />
-        
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-4xl font-bold">{barraca.title}</h1>
-          <div className={`px-4 py-2 rounded-full ${
-            availability.isOpen 
-              ? 'bg-green-100 text-green-800' 
-              : 'bg-red-100 text-red-800'
-          }`}>
-            {availability.message}
+        {/* Mobile-first layout: Details above image */}
+        <div className="flex flex-col md:flex-col-reverse">
+          {/* Details Section */}
+          <div className="mb-6 md:mt-8">
+            <div className="flex items-center justify-between mb-4">
+              <h1 className="text-4xl font-bold">{barraca.title}</h1>
+              <div className={`px-4 py-2 rounded-full ${
+                availability.isOpen 
+                  ? 'bg-green-100 text-green-800' 
+                  : 'bg-red-100 text-red-800'
+              }`}>
+                {availability.message}
+              </div>
+            </div>
+
+            <p className="text-gray-600 text-lg mb-6">{barraca.description}</p>
+
+            {barraca.hours && barraca.hours.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-2xl font-semibold mb-4">Operating Hours</h2>
+                <div className="space-y-2">
+                  {barraca.hours.map((hour, index) => (
+                    <div key={index} className="flex justify-between border-b py-2">
+                      <span className="font-medium">
+                        {new Date(hour.date).toLocaleDateString('en-US', { weekday: 'long' })}
+                      </span>
+                      <span>{hour.open} - {hour.close}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Image Section */}
+          <div className="mb-6 md:mb-0">
+            <img 
+              src={barraca.imageUrl} 
+              alt={barraca.title}
+              className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition-opacity"
+            //   onClick={() => handleImageClick(barraca.imageUrl)}
+            />
           </div>
         </div>
-
-        <p className="text-gray-600 text-lg mb-6">{barraca.description}</p>
-
-        {barraca.hours && barraca.hours.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold mb-4">Operating Hours</h2>
-            <div className="space-y-2">
-              {barraca.hours.map((hour, index) => (
-                <div key={index} className="flex justify-between border-b py-2">
-                  <span className="font-medium">
-                    {new Date(hour.date).toLocaleDateString('en-US', { weekday: 'long' })}
-                  </span>
-                  <span>{hour.open} - {hour.close}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
