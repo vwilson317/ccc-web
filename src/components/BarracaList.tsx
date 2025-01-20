@@ -70,17 +70,35 @@ export const BarracaList = () => {
 
               </div>
               <div className="w-full md:w-1/2 space-y-4">
-                <Link to={`/barraca/${barraca.id}`}>
-
-                  <h2 className="text-2xl font-bold">{barraca.title}</h2>
-                  <div className={`px-3 py-1 rounded-full text-sm ${availability.isOpen
+                <a href={`/barraca/${barraca.id}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h2 className="text-2xl font-bold">{barraca.title}</h2>
+                    <div className={`px-3 py-1 rounded-full text-sm ${availability.isOpen
                       ? 'bg-green-100 text-green-800'
                       : 'bg-red-100 text-red-800'
-                    }`}>
-                    {availability.message}
+                      }`}>
+                      {availability.message}
+                    </div>
                   </div>
                   <p className="text-gray-600">{barraca.description}</p>
-                </Link>
+                  <div className="flex items-center space-x-4">
+                    {barraca.menuUri ? (
+                      <a
+                        href={barraca.menuUri}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-orange-500 hover:text-orange-700"
+                      >
+                        View menu →
+                      </a>
+                    ) : (
+                      <span className="text-gray-400 text-sm italic">
+                        No menu available
+                      </span>
+                    )}
+                  </div>
+                </a>
+
               </div>
             </div>
           )
