@@ -29,12 +29,12 @@ export const barracas: Barraca[] = [
       { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ],
-    menuUri: "https://www.google.com"
+    menuUri: "./assets/80-menu.jpg"
   },
   {
     id: 2,
-    title: "Item Two",
-    description: "This is a detailed description of item two. It explains why this item is special and unique.",
+    title: "Rasta (#20)",
+    description: "Another one of our favorites. If you're in leme it's always a good vibe.",
     imageUrl: "/item2.jpg",
     hours: []
   },
