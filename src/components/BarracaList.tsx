@@ -14,6 +14,7 @@ interface Barraca {
   description: string;
   imageUrl: string;
   hours?: OperatingHours[];
+  menuUri?: string;
 }
 
 export const barracas: Barraca[] = [
@@ -25,9 +26,10 @@ export const barracas: Barraca[] = [
     hours: [
       { date: "2025-01-20", open: "09:00", close: "20:00" },
       { date: "2025-01-21", open: "09:00", close: "17:00" },
-      { date: "2025-01-27", open: "09:00", close: "17:00" },
+      { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
-    ]
+    ],
+    menuUri: "https://www.google.com"
   },
   {
     id: 2,
@@ -50,35 +52,37 @@ export const BarracaList = () => {
       <div className="space-y-12">
         {barracas.map((barraca, index) => {
           const availability = getAvailabilityInfo(barraca.hours);
-          
-          return (
-          <div
-            key={barraca.id}
-            className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} 
-                       gap-8 items-center`}
-          >
-            <div className="w-full md:w-1/2">
-              <Link to={`/barraca/${barraca.id}`}>
-                <img
-                  src={barraca.imageUrl}
-                  alt={barraca.title}
-                  className="w-full h-64 object-cover rounded-lg shadow-lg"
-                />
-              </Link>
 
-            </div>
-            <div className="w-full md:w-1/2 space-y-4">
-              <h2 className="text-2xl font-bold">{barraca.title}</h2>
-              <div className={`px-3 py-1 rounded-full text-sm ${
-                    availability.isOpen 
-                      ? 'bg-green-100 text-green-800' 
+          return (
+            <div
+              key={barraca.id}
+              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} 
+                       gap-8 items-center`}
+            >
+              <div className="w-full md:w-1/2">
+                <Link to={`/barraca/${barraca.id}`}>
+                  <img
+                    src={barraca.imageUrl}
+                    alt={barraca.title}
+                    className="w-full h-64 object-cover rounded-lg shadow-lg"
+                  />
+                </Link>
+
+              </div>
+              <div className="w-full md:w-1/2 space-y-4">
+                <Link to={`/barraca/${barraca.id}`}>
+
+                  <h2 className="text-2xl font-bold">{barraca.title}</h2>
+                  <div className={`px-3 py-1 rounded-full text-sm ${availability.isOpen
+                      ? 'bg-green-100 text-green-800'
                       : 'bg-red-100 text-red-800'
-                  }`}>
+                    }`}>
                     {availability.message}
                   </div>
-              <p className="text-gray-600">{barraca.description}</p>
+                  <p className="text-gray-600">{barraca.description}</p>
+                </Link>
+              </div>
             </div>
-          </div>
           )
         })}
       </div>
