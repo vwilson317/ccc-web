@@ -48,7 +48,7 @@ export const ParallaxHero = () => {
             transition={{ duration: 1 }}
             className="h-full w-full bg-cover bg-center"
             style={{ 
-              backgroundImage: `url('../assets/rio-sunset-default.jpg')` //`url('${backgroundImages[0]}')`
+              backgroundImage: `url(./assets/rio-sunset-default.jpg)` //`url('${backgroundImages[0]}')`
             }}
           />
         </AnimatePresence>

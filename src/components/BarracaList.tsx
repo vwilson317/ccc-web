@@ -10,7 +10,7 @@ const items: Barraca[] = [
     id: 1,
     title: "Uruguay (#80)",
     description: "Creators personal favorite. They're always super friendly and wont rip gringos off :)",
-    imageUrl: "/item1.jpg"
+    imageUrl: "./assets/barraca-80.jpg"
   },
   {
     id: 2,
