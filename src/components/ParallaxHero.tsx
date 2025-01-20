@@ -1,12 +1,6 @@
-import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-
-const backgroundImages = [
-  '/rio-sunset-default.jpg',
-  '/hero-bg-2.jpg',
-  '/hero-bg-3.jpg',
-  '/hero-bg-4.jpg'
-];
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import './ParallaxStyles.css';
 
 export const ParallaxHero = () => {
   const ref = useRef(null);
@@ -18,18 +12,18 @@ export const ParallaxHero = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   
   // Random initial image
-  const [currentImageIndex, setCurrentImageIndex] = useState(
-    Math.floor(Math.random() * backgroundImages.length)
-  );
+  // const [currentImageIndex, setCurrentImageIndex] = useState(
+  //   Math.floor(Math.random() * backgroundImages.length)
+  // );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((current) => 
-        current === backgroundImages.length - 1 ? 0 : current + 1
-      );
-    }, 15000);
+    // const interval = setInterval(() => {
+    //   setCurrentImageIndex((current) => 
+    //     current === backgroundImages.length - 1 ? 0 : current + 1
+    //   );
+    // }, 15000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   return (
@@ -39,6 +33,10 @@ export const ParallaxHero = () => {
         className="absolute inset-0"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
+        <div className="h-full w-full bg-cover bg-center banner" />
+
+        {/* 
+        TODO: Revist this later
         <AnimatePresence mode="wait">
           <motion.div
             key={currentImageIndex}
@@ -48,10 +46,10 @@ export const ParallaxHero = () => {
             transition={{ duration: 1 }}
             className="h-full w-full bg-cover bg-center"
             style={{ 
-              backgroundImage: `url(./assets/rio-sunset-default.jpg)` //`url('${backgroundImages[0]}')`
+              backgroundImage: `url("../assets/rio-sunset-default.jpg")` //`url('${backgroundImages[0]}')`
             }}
           />
-        </AnimatePresence>
+        </AnimatePresence> */}
       </motion.div>
       
       <div className="relative h-full flex items-center justify-center">

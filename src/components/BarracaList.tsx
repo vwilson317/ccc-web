@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface Barraca {
   id: number;
   title: string;
@@ -5,12 +7,12 @@ interface Barraca {
   imageUrl: string;
 }
 
-const items: Barraca[] = [
+export const barracas: Barraca[] = [
   {
     id: 1,
     title: "Uruguay (#80)",
     description: "Creators personal favorite. They're always super friendly and wont rip gringos off :)",
-    imageUrl: "./assets/barraca-80.jpg"
+    imageUrl: '/assets/barraca-80.jpg'
   },
   {
     id: 2,
@@ -30,22 +32,25 @@ export const BarracaList = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="space-y-12">
-        {items.map((item, index) => (
-          <div 
-            key={item.id}
+        {barracas.map((barraca, index) => (
+          <div
+            key={barraca.id}
             className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} 
                        gap-8 items-center`}
           >
             <div className="w-full md:w-1/2">
-              <img 
-                src={item.imageUrl} 
-                alt={item.title}
-                className="w-full h-64 object-cover rounded-lg shadow-lg"
-              />
+              <Link to={`/barraca/${barraca.id}`}>
+                <img
+                  src={barraca.imageUrl}
+                  alt={barraca.title}
+                  className="w-full h-64 object-cover rounded-lg shadow-lg"
+                />
+              </Link>
+
             </div>
             <div className="w-full md:w-1/2 space-y-4">
-              <h2 className="text-2xl font-bold">{item.title}</h2>
-              <p className="text-gray-600">{item.description}</p>
+              <h2 className="text-2xl font-bold">{barraca.title}</h2>
+              <p className="text-gray-600">{barraca.description}</p>
             </div>
           </div>
         ))}
