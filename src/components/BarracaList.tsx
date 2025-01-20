@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-
 import { getAvailabilityInfo } from '../utils/dateUtils';
+import './BarracaDetail.css';
 
 interface OperatingHours {
   date: string; // YYYY-MM-DD
@@ -21,28 +20,31 @@ export const barracas: Barraca[] = [
   {
     id: 1,
     title: "Uruguay (#80)",
-    description: "Creators personal favorite. They're always super friendly and wont rip gringos off :)",
-    imageUrl: '/assets/barraca-80.jpg',
+    description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
+    imageUrl: '../assets/barraca-80.jpg',
     hours: [
-      { date: "2025-01-20", open: "09:00", close: "20:00" },
+      { date: "2025-01-20", open: "00:00", close: "23:59" },
       { date: "2025-01-21", open: "09:00", close: "17:00" },
       { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ],
-    menuUri: "./assets/80-menu.jpg"
+    menuUri: "../assets/80-menu.jpg"
   },
   {
     id: 2,
     title: "Rasta (#20)",
     description: "Another one of our favorites. If you're in leme it's always a good vibe.",
-    imageUrl: '/assets/20-default.jpeg',
-    hours: []
+    imageUrl: '../assets/20-default.jpeg',
+    hours: [
+      { date: "2025-01-28", open: "09:00", close: "17:00" }
+    ]
   },
   {
     id: 3,
-    title: "Item Three",
-    description: "This is a detailed description of item three. It highlights the main selling points of this item.",
-    imageUrl: "/item3.jpg"
+    title: "Testing (#0)",
+    description: `Mock barraca, not real. Just testing if most of the info is missing for a barraca. 
+    might make sense to not display it i there's no menu or operating hours.`,
+    imageUrl: "../assets/oh-crap.png"
   }
 ];
 
@@ -58,20 +60,15 @@ export const BarracaList = () => {
               <div
                 key={barraca.id}
                 className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } gap-8 items-center`}
+                  } gap-4 items-center mb-8`}
               >
                 {/* Image Section */}
                 <div className="w-full md:w-1/2 relative group">
-                  <img
-                    src={barraca.imageUrl}
-                    alt={barraca.title}
-                    className="w-full h-64 object-cover rounded-lg shadow-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  // onClick={() => handleImageClick(barraca.imageUrl)}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-black bg-opacity-50 text-white px-4 py-2 rounded-lg text-sm">
-                      Click to view full image
-                    </span>
+                  <div 
+                  className="w-full h-64 object-cover rounded-lg shadow-lg 
+                  cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
+                  >
                   </div>
                 </div>
 
