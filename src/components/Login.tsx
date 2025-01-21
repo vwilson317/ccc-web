@@ -1,35 +1,68 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiUser } from 'react-icons/fi';
+import toast from 'react-hot-toast';
+
+interface User {
+    id: string;
+    username: string;
+    email: string;
+    isAdmin: boolean;
+}
+
+const mockAdmin = {
+    id: '1',
+    username: 'vwilson',
+    email: 'admin@example.com',
+    isAdmin: true
+}
 
 export const Login = () => {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const isValidEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
-        const isEmail = isValidEmail(identifier);
-        // Handle authentication based on whether identifier is email or username
-        if (isEmail) {
-            // Handle email login
-            console.log('Logging in with email:', identifier);
-        } else {
-            // Handle username login
-            console.log('Logging in with username:', identifier);
+        try {
+            let user: User;
+            if (identifier === mockAdmin.username) {
+                user = mockAdmin;
+                toast.success('Welcome back, Administrator!');
+                navigate('/admin');
+            } else {
+                user = {
+                    id: '1',
+                    username: identifier,
+                    email: 'admin@example.com',
+                    isAdmin: false
+                }
+                toast.success(`Welcome back, ${identifier}!`);
+                navigate('/');
+            }
+
+            localStorage.setItem('user', JSON.stringify(user));
+        } catch (err) {
+            setError('Invalid credentials');
+            toast.error('Login failed. Please check your credentials.');
         }
     };
 
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-6">Login</h1>
+                <div className="text-center mb-6">
+                    <FiUser className="mx-auto text-4xl text-blue-500 mb-2" />
+                    <h1 className="text-2xl font-bold">Login</h1>
+                </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label className="block text-sm font-medium mb-1">Username or Email</label>

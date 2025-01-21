@@ -1,96 +1,120 @@
-import { useState } from 'react';
+import { FiUser, FiHome, FiInfo, FiLogIn, FiLogOut } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import toast from 'react-hot-toast';
+
+interface User {
+    id: string;
+    username: string;
+    email: string;
+    isAdmin: boolean;
+}
 
 interface DrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
+    isOpen: boolean;
+    onClose: () => void;
 }
 
 export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          />
-          
-          {/* Drawer */}
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 20 }}
-            className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-white z-50 shadow-xl"
-          >
-            <div className="p-4 flex flex-col h-full">
-              {/* Close button */}
-              <button 
-                onClick={onClose}
-                className="self-end p-2"
-              >
-                <svg 
-                  className="w-6 h-6" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
+    const userString = localStorage.getItem('user');
+    const user: User | null = userString ? JSON.parse(userString) : null;
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        toast.success('Successfully logged out!');
+        onClose();
+        window.location.href = '/';
+    };
+
+    return (
+        <div
+            className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform ${
+                isOpen ? 'translate-x-0' : 'translate-x-full'
+            } transition-transform duration-300 ease-in-out z-50`}
+        >
+            <div className="h-full flex flex-col">
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M6 18L18 6M6 6l12 12" 
-                  />
-                </svg>
-              </button>
+                    ×
+                </button>
 
-              {/* Menu items */}
-              <nav className="flex-1 mt-8">
-                <ul className="space-y-4">
-                  <li>
-                    <Link 
-                      to="/" 
-                      className="block p-2 hover:bg-gray-100 rounded-lg"
-                      onClick={onClose}
-                    >
-                      Barracas
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/info" 
-                      className="block p-2 hover:bg-gray-100 rounded-lg"
-                      onClick={onClose}
-                    >
-                      Info
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      to="/login" 
-                      className="block p-2 hover:bg-gray-100 rounded-lg"
-                      onClick={onClose}
-                    >
-                      Login
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
+                {/* User Profile Section */}
+                {user && (
+                    <div className="p-4 border-b border-gray-200">
+                        <div className="flex items-center space-x-3 mb-4">
+                            <FiUser className="text-2xl text-blue-500" />
+                            <div>
+                                <h3 className="font-medium">{user.username}</h3>
+                                <p className="text-sm text-gray-500">{user.email}</p>
+                            </div>
+                        </div>
+                        {/* <div className="text-sm text-gray-600">
+                            Account Type: {user.isAdmin ? 'Administrator' : 'Regular User'}
+                        </div> */}
+                    </div>
+                )}
 
-              {/* Footer */}
-              <div className="mt-auto p-4 text-sm text-gray-500">
-                <p>© 2025 Carioca Coastal Club</p>
-              </div>
+                {/* Navigation Menu */}
+                <nav className="flex-1 p-4">
+                    <ul className="space-y-2">
+                        <li>
+                            <Link
+                                to="/"
+                                className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
+                                onClick={onClose}
+                            >
+                                <FiHome />
+                                <span>Home</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/info"
+                                className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
+                                onClick={onClose}
+                            >
+                                <FiInfo />
+                                <span>Info</span>
+                            </Link>
+                        </li>
+                        {user?.isAdmin && (
+                            <li>
+                                <Link
+                                    to="/admin"
+                                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
+                                    onClick={onClose}
+                                >
+                                    <FiUser />
+                                    <span>Admin Dashboard</span>
+                                </Link>
+                            </li>
+                        )}
+                        {!user ? (
+                            <li>
+                                <Link
+                                    to="/login"
+                                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
+                                    onClick={onClose}
+                                >
+                                    <FiLogIn />
+                                    <span>Login</span>
+                                </Link>
+                            </li>
+                        ) : (
+                            <li>
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded w-full text-left text-red-500"
+                                >
+                                    <FiLogOut />
+                                    <span>Logout</span>
+                                </button>
+                            </li>
+                        )}
+                    </ul>
+                </nav>
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
+        </div>
+    );
 };
