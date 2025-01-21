@@ -14,6 +14,7 @@ interface Barraca {
   imageUrl: string;
   hours?: OperatingHours[];
   menuUri?: string;
+  paymentsEnabled?: boolean;
 }
 
 export const barracas: Barraca[] = [
@@ -28,7 +29,8 @@ export const barracas: Barraca[] = [
       { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ],
-    menuUri: "/assets/80-menu.jpg"
+    menuUri: "/assets/80-menu.jpg",
+    paymentsEnabled: true
   },
   {
     id: 20,
@@ -56,7 +58,7 @@ export const BarracaList = () => {
           const availability = getAvailabilityInfo(barraca.hours);
 
           return (
-            <a href={`/barraca/${barraca.id}`}> 
+            <a href={`/barraca/${barraca.id}`}>
               <div
                 key={barraca.id}
                 className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
@@ -64,10 +66,10 @@ export const BarracaList = () => {
               >
                 {/* Image Section */}
                 <div className="w-full md:w-1/2 relative group">
-                  <div 
-                  className="w-full h-64 object-cover rounded-lg shadow-lg 
+                  <div
+                    className="w-full h-64 object-cover rounded-lg shadow-lg 
                   cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
+                    style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
                   >
                   </div>
                 </div>
@@ -77,8 +79,8 @@ export const BarracaList = () => {
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0 mb-2">
                     <h2 className="text-2xl font-bold">{barraca.title}</h2>
                     <div className={`px-3 py-1 rounded-full text-sm self-start md:self-auto ${availability.isOpen
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-red-100 text-red-800'
                       }`}>
                       {availability.message}
                     </div>
@@ -98,6 +100,14 @@ export const BarracaList = () => {
                       <span className="text-gray-400 text-sm italic">
                         No menu available
                       </span>
+                    )}
+                    {barraca.paymentsEnabled && (
+                      <a
+                        href={`/order/${barraca.id}`}
+                        className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+                      >
+                        Order Now
+                      </a>
                     )}
                   </div>
                 </div>
