@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { barracas } from './BarracaList';
 
 interface MenuItem {
@@ -38,6 +38,8 @@ export const OrderPage = () => {
     const barraca = barracas.find(b => b.id === barracaId);
     const menuItems = mockMenuItems[barracaId] || [];
     const [quantities, setQuantities] = useState<Record<number, number>>({});
+    const navigate = useNavigate();
+
     const updateQuantity = (itemId: number, delta: number) => {
         setQuantities(prev => ({
             ...prev,
@@ -46,6 +48,27 @@ export const OrderPage = () => {
     };
 
     const total = menuItems.reduce((sum, item) => sum + (quantities[item.id] || 0) * item.price, 0);
+
+    const handleCheckout = () => {
+        const itemsToCheckout = menuItems
+            .filter(item => quantities[item.id] > 0)
+            .map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: quantities[item.id]
+            }));
+
+        navigate(`/checkout`, {
+            state: {
+                items: itemsToCheckout,
+                total,
+                barracaId,
+                acceptedPayments: barraca.acceptedPayments
+            }
+        });
+    };
+
     if (!barraca) {
         return <div className="container mx-auto px-4 py-12">Barraca not found</div>;
     }
@@ -94,7 +117,7 @@ export const OrderPage = () => {
                         </div>
                         <button
                             className="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600"
-                            onClick={() => alert('Implement checkout process')}
+                            onClick={handleCheckout}
                         >
                             Checkout
                         </button>

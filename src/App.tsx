@@ -9,6 +9,8 @@ import { Login } from './components/Login'
 import { Info } from './components/Info'
 import { Register } from './components/Register'
 import { OrderPage } from './components/OrderPage'
+import { CheckoutPage } from './components/CheckoutPage'
+
 function App() {
   return (
     <Router>
@@ -26,6 +28,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order/:id" element={<OrderPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
       </main>
     </Router>

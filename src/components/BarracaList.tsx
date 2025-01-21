@@ -7,7 +7,9 @@ interface OperatingHours {
   close: string; // HH:MM
 }
 
-interface Barraca {
+export type PaymentMethod = 'VISA' | 'PIX' | 'PayPal' | 'Crypto';
+
+export interface Barraca {
   id: number;
   title: string;
   description: string;
@@ -15,6 +17,7 @@ interface Barraca {
   hours?: OperatingHours[];
   menuUri?: string;
   paymentsEnabled?: boolean;
+  acceptedPayments?: PaymentMethod[];
 }
 
 export const barracas: Barraca[] = [
@@ -30,7 +33,8 @@ export const barracas: Barraca[] = [
       { date: "2025-01-28", open: "09:00", close: "17:00" }
     ],
     menuUri: "/assets/80-menu.jpg",
-    paymentsEnabled: true
+    paymentsEnabled: true,
+    acceptedPayments: ['VISA', 'PIX', 'PayPal']
   },
   {
     id: 20,
