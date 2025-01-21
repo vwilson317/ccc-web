@@ -1,0 +1,18 @@
+/* Add these styles for the configured hours indicator */
+.configured-hours {
+    background-color: #e5e7eb !important;
+    border-radius: 0.25rem;
+    position: relative;
+}
+
+.configured-hours::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+} 
