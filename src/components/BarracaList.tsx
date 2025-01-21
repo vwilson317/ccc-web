@@ -96,7 +96,7 @@ export const BarracaList = () => {
                         href={barraca.menuUri}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-orange-500 hover:text-orange-700 z-1"
+                        className="text-green-600 hover:text-green-700 z-1"
                       >
                         View menu →
                       </a>
@@ -108,7 +108,7 @@ export const BarracaList = () => {
                     {barraca.paymentsEnabled && (
                       <a
                         href={`/order/${barraca.id}`}
-                        className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
                       >
                         Order Now
                       </a>

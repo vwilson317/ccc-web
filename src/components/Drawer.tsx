@@ -27,9 +27,8 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
 
     return (
         <div
-            className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform ${
-                isOpen ? 'translate-x-0' : 'translate-x-full'
-            } transition-transform duration-300 ease-in-out z-50`}
+            className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
+                } transition-transform duration-300 ease-in-out z-50`}
         >
             <div className="h-full flex flex-col">
                 <button
@@ -58,6 +57,18 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
                 {/* Navigation Menu */}
                 <nav className="flex-1 p-4">
                     <ul className="space-y-2">
+                        {user?.isAdmin && (
+                            <li>
+                                <Link
+                                    to="/admin"
+                                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
+                                    onClick={onClose}
+                                >
+                                    <FiUser />
+                                    <span>Dashboard</span>
+                                </Link>
+                            </li>
+                        )}
                         <li>
                             <Link
                                 to="/"
@@ -65,7 +76,7 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
                                 onClick={onClose}
                             >
                                 <FiHome />
-                                <span>Home</span>
+                                <span>Barracas</span>
                             </Link>
                         </li>
                         <li>
@@ -78,18 +89,6 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
                                 <span>Info</span>
                             </Link>
                         </li>
-                        {user?.isAdmin && (
-                            <li>
-                                <Link
-                                    to="/admin"
-                                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
-                                    onClick={onClose}
-                                >
-                                    <FiUser />
-                                    <span>Admin Dashboard</span>
-                                </Link>
-                            </li>
-                        )}
                         {!user ? (
                             <li>
                                 <Link

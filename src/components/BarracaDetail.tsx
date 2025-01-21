@@ -11,7 +11,7 @@ export const BarracaDetail = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Barraca not found</h2>
-          <Link to="/" className="text-blue-500 hover:text-blue-700">
+          <Link to="/" className="text-green-600 hover:text-green-700">
             Return to home
           </Link>
         </div>
@@ -24,7 +24,7 @@ export const BarracaDetail = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="flex items-center justify-between mb-8">
-        <Link to="/" className="text-blue-500 hover:text-blue-700">
+        <Link to="/" className="text-green-600 hover:text-green-700">
           ← Back to all barracas
         </Link>
         {barraca.menuUri ? (
@@ -32,7 +32,7 @@ export const BarracaDetail = () => {
             href={barraca.menuUri}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors"
+            className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           >
             <span className="mr-2">View Menu</span>
             <svg 
