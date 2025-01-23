@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { barracas } from './BarracaList';
+import { Footer } from './Footer';
 
 interface MenuItem {
     id: number;
@@ -64,7 +65,7 @@ export const OrderPage = () => {
                 items: itemsToCheckout,
                 total,
                 barracaId,
-                acceptedPayments: barraca.acceptedPayments
+                acceptedPayments: barraca?.acceptedPayments
             }
         });
     };
@@ -73,11 +74,9 @@ export const OrderPage = () => {
         return <div className="container mx-auto px-4 py-12">Barraca not found</div>;
     }
     return (
-        <div className="container mx-auto px-4 py-12">
-            <Link to={`/barraca/${id}`}>
+        <div className="container mx-auto px-4 py-12 pb-24">
             <h1 className="text-3xl font-bold mb-8">{barraca.title}</h1>
 
-            </Link>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {menuItems.map(item => (
                     <div key={item.id} className="border rounded-lg p-4 shadow-sm">
@@ -110,19 +109,18 @@ export const OrderPage = () => {
                 ))}
             </div>
             {total > 0 && (
-                <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
-                    <div className="container mx-auto flex justify-between items-center">
-                        <div className="text-xl font-bold">
-                            Total: R$ {total.toFixed(2)}
-                        </div>
-                        <button
-                            className="bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600"
-                            onClick={handleCheckout}
-                        >
-                            Checkout
-                        </button>
-                    </div>
-                </div>
+                <Footer 
+                    leftButton={{
+                        to: `/barraca/${id}`,
+                        label: 'Back to Details',
+                        icon: true
+                    }}
+                    rightButton={{
+                        onClick: handleCheckout,
+                        label: 'Checkout'
+                    }}
+                    total={total}
+                />
             )}
         </div>
     );

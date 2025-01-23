@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiUser } from 'react-icons/fi';
 import toast from 'react-hot-toast';
-
+import { Footer } from './Footer';
 interface User {
     id: string;
     username: string;
@@ -57,18 +57,18 @@ export const Login = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 pb-24">
             <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
                 <div className="text-center mb-6">
-                    <FiUser className="mx-auto text-4xl text-blue-500 mb-2" />
-                    <h1 className="text-2xl font-bold">Login</h1>
+                    <FiUser className="mx-auto text-4xl text-green-600 mb-2" />
+                    <h1 className="text-2xl font-bold text-green-700">Login</h1>
                 </div>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Username or Email</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Username or Email</label>
                         <input 
                             type="text" 
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Enter your username or email"
                             value={identifier}
                             onChange={(e) => setIdentifier(e.target.value)}
@@ -76,10 +76,10 @@ export const Login = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Password</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                         <input 
                             type="password" 
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Enter your password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -91,7 +91,7 @@ export const Login = () => {
                     )}
                     <button 
                         type="submit"
-                        className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+                        className="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition-colors"
                     >
                         Login
                     </button>
@@ -99,12 +99,20 @@ export const Login = () => {
                 <div className="mt-4 text-center">
                     <p className="text-gray-600">
                         Don't have an account?{' '}
-                        <Link to="/register" className="text-blue-500 hover:text-blue-600">
+                        <Link to="/register" className="text-green-600 hover:text-green-700">
                             Register here
                         </Link>
                     </p>
                 </div>
             </div>
+
+            <Footer 
+                leftButton={{
+                    to: "/",
+                    label: "Back to Home",
+                    icon: true
+                }}
+            />
         </div>
     );
 };

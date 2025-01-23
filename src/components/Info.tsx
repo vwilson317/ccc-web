@@ -1,6 +1,8 @@
+import { Footer } from './Footer';
+
 export const Info = () => {
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 pb-24">
             <div className="max-w-2xl mx-auto">
                 <h1 className="text-3xl font-bold mb-6 text-green-600">About Us</h1>
                 <div className="prose prose-lg">
@@ -59,6 +61,18 @@ export const Info = () => {
 
                 </div>
             </div>
+
+            <Footer 
+                leftButton={{
+                    to: "/",
+                    label: "Back to Home",
+                    icon: true
+                }}
+                rightButton={{
+                    to: "/register",
+                    label: "Get Started"
+                }}
+            />
         </div>
     );
 };

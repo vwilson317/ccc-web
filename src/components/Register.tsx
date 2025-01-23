@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Footer } from './Footer';
 
 export const Register = () => {
     const [formData, setFormData] = useState({
@@ -74,16 +75,16 @@ export const Register = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 py-12 pb-24">
             <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-6">Register</h1>
+                <h1 className="text-2xl font-bold mb-6 text-green-700 text-center">Register</h1>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Username</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
                         <input 
                             type="text"
                             name="username"
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Choose a username"
                             value={formData.username}
                             onChange={handleChange}
@@ -94,11 +95,11 @@ export const Register = () => {
                         )}
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Email</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <input 
                             type="email"
                             name="email"
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Enter your email"
                             value={formData.email}
                             onChange={handleChange}
@@ -109,11 +110,11 @@ export const Register = () => {
                         )}
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Password</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
                         <input 
                             type="password"
                             name="password"
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Create a password"
                             value={formData.password}
                             onChange={handleChange}
@@ -124,11 +125,11 @@ export const Register = () => {
                         )}
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Confirm Password</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
                         <input 
                             type="password"
                             name="confirmPassword"
-                            className="w-full p-2 border rounded-lg"
+                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Confirm your password"
                             value={formData.confirmPassword}
                             onChange={handleChange}
@@ -140,7 +141,7 @@ export const Register = () => {
                     </div>
                     <button 
                         type="submit"
-                        className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
+                        className="w-full bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition-colors"
                     >
                         Register
                     </button>
@@ -148,12 +149,20 @@ export const Register = () => {
                 <div className="mt-4 text-center">
                     <p className="text-gray-600">
                         Already have an account?{' '}
-                        <Link to="/login" className="text-blue-500 hover:text-blue-600">
+                        <Link to="/login" className="text-green-600 hover:text-green-700">
                             Login here
                         </Link>
                     </p>
                 </div>
             </div>
+
+            <Footer 
+                leftButton={{
+                    to: "/",
+                    label: "Back to Home",
+                    icon: true
+                }}
+            />
         </div>
     );
 }; 

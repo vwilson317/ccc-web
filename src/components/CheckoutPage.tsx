@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { PaymentMethod } from './BarracaList';
+import { Footer } from './Footer';
 
 // Payment method icons mapping
 const PaymentIcons: Record<PaymentMethod, string> = {
@@ -58,11 +59,7 @@ export const CheckoutPage = () => {
     );
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-2xl">
-            <Link to={`/order/${barracaId}`} className="text-orange-500 mb-8 block">
-                ← Back to Order
-            </Link>
-            
+        <div className="container mx-auto px-4 py-12 max-w-2xl pb-24">
             <h1 className="text-2xl font-bold mb-6">Checkout</h1>
             
             <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
@@ -88,17 +85,23 @@ export const CheckoutPage = () => {
                 ))}
             </div>
 
-            <button
-                onClick={handlePayment}
-                disabled={!selectedPayment}
-                className={`w-full py-3 rounded-lg text-white text-lg font-semibold
-                    ${selectedPayment 
-                        ? 'bg-orange-500 hover:bg-orange-600' 
-                        : 'bg-gray-300 cursor-not-allowed'
-                    }`}
-            >
-                Pay Now
-            </button>
+            <Footer 
+                leftButton={{
+                    to: `/order/${barracaId}`,
+                    label: 'Back to Order',
+                    icon: true
+                }}
+                rightButton={{
+                    onClick: handlePayment,
+                    label: 'Pay Now',
+                    disabled: !selectedPayment,
+                    className: `px-6 py-2 rounded-lg text-white text-lg font-semibold
+                        ${selectedPayment 
+                            ? 'bg-orange-500 hover:bg-orange-600' 
+                            : 'bg-gray-300 cursor-not-allowed'
+                        }`
+                }}
+            />
         </div>
     );
 }; 
