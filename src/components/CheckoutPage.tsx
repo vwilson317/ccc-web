@@ -25,7 +25,7 @@ interface CheckoutPageProps {
 
 export const CheckoutPage = () => {
     const location = useLocation();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [selectedPayment, setSelectedPayment] = useState<PaymentMethod | null>(null);
     const { items, total, barracaId, acceptedPayments } = location.state as CheckoutPageProps;
 

@@ -23,10 +23,10 @@ export const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const isValidEmail = (email: string) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
+    // const isValidEmail = (email: string) => {
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     return emailRegex.test(email);
+    // };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

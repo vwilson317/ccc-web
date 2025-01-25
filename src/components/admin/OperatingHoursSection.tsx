@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { FiClock, FiTrash2, FiEdit2, FiCheck, FiX } from 'react-icons/fi';
+import { FiClock, FiTrash2, FiCheck, FiX } from 'react-icons/fi';
 import DatePicker from 'react-datepicker';
 import { format, isSameDay } from 'date-fns';
 import toast from 'react-hot-toast';
