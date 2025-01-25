@@ -35,7 +35,7 @@ export const OperatingHoursSection = ({ operatingHours, onOperatingHoursChange }
 
     // Custom day class names to show configured hours
     const getDayClassNames = (date: Date) => {
-        return hasConfiguredHours(date) ? "configured-hours" : undefined;
+        return hasConfiguredHours(date) ? "configured-hours" : '';
     };
 
     const handleDateChange = (date: Date) => {
@@ -144,7 +144,7 @@ export const OperatingHoursSection = ({ operatingHours, onOperatingHoursChange }
                             dayClassName={getDayClassNames}
                         />
                     </div>
-                    <style jsx global>{`
+                    <style>{`
                         .configured-hours {
                             background-color: #e5e7eb !important;
                             border-radius: 0.25rem;
