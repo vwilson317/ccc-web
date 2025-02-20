@@ -1,0 +1,85 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "loading": "Loading...", 
+
+    "header": {
+      "title": "Carioca Coastal Club",
+      "menu": "Menu"
+    },
+    "login": {
+      "title": "Login",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create one here",
+      "welcomeBack": "Welcome back, {name}!",
+      "welcomeAdmin": "Welcome back, Administrator!"
+    },
+    "info": {
+      "aboutUs": "About Us",
+      "welcome": "Welcome to your one stop shop for all things barracas in Rio de Janeiro.",
+      "howItWorks": "How It Works",
+      "howItWorksText": "View barracas and their operating hours. If the barraca you're looking for is not listed, send us an email and we will work on adding it.",
+      "getStarted": "Get Started",
+      "getStartedText": "Create an account or login to access all our features.",
+      "features": "Current Features",
+      "featuresList": {
+        "favorites": "Save your favorite barracas",
+        "updates": "Receive updates about special events"
+      }
+    },
+    "barraca": {
+      "viewMenu": "View menu →",
+      "noMenu": "No menu available",
+      "orderNow": "Order Now",
+      "notFound": "Barraca not found",
+      "returnHome": "Return to home",
+      "operatingHours": "Operating Hours",
+      "contact": "Contact",
+      "contactText": "Have questions or suggestions? Reach out to us at:",
+      "features": {
+        "title": "Features",
+        "realTime": "Real-time barraca availability status",
+        "digitalMenu": "Digital menu access",
+        "hours": "Accurate operating hours",
+        "listings": "Comprehensive barraca listings",
+        "accounts": "User accounts with personalized features"
+      },
+      "comingSoon": {
+        "title": "Coming Soon",
+        "notifications": "Mobile app with push notifications for your favorite barracas",
+        "reviews": "Customer reviews and ratings",
+        "ordering": "Direct ordering system",
+        "loyalty": "Loyalty program with exclusive benefits",
+        "recommendations": "Personalized recommendations"
+      }
+    }
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "passwordLength": "Password must be at least 8 characters long",
+    "somethingWentWrong": "Something went wrong"
+  },
+  "messages": {
+    "successfulLogin": "Successfully logged in",
+    "successfulLogout": "Successfully logged out",
+    "successfulSave": "Successfully saved",
+    "successfulDelete": "Successfully deleted"
+  },
+  "adminDashboard": {
+    "title": "Admin Dashboard"
+  }
+} 

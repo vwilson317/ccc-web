@@ -1,0 +1,82 @@
+{
+  "common": {
+    "welcome": "Bem-vindo",
+    "login": "Entrar",
+    "signup": "Cadastrar",
+    "logout": "Sair",
+    "email": "Email",
+    "password": "Senha",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "search": "Pesquisar",
+    "loading": "Carregando...",
+    "header": {
+      "title": "Carioca Coastal Club",
+      "menu": "Menu"
+    },
+    "login": {
+      "title": "Entrar",
+      "username": "Nome de usuário",
+      "password": "Senha",
+      "submit": "Entrar",
+      "noAccount": "Não tem uma conta?",
+      "createAccount": "Crie uma aqui",
+      "welcomeBack": "Bem-vindo de volta, {name}!",
+      "welcomeAdmin": "Bem-vindo de volta, Administrador!"
+    },
+    "info": {
+      "aboutUs": "Sobre Nós",
+      "welcome": "Bem-vindo ao seu destino único para tudo sobre barracas no Rio de Janeiro.",
+      "howItWorks": "Como Funciona",
+      "howItWorksText": "Visualize barracas e seus horários de funcionamento. Se a barraca que você procura não estiver listada, envie-nos um email e trabalharemos para adicioná-la.",
+      "getStarted": "Comece Agora",
+      "getStartedText": "Crie uma conta ou faça login para acessar todos os nossos recursos.",
+      "features": "Recursos Atuais",
+      "featuresList": {
+        "favorites": "Salve suas barracas favoritas",
+        "updates": "Receba atualizações sobre eventos especiais"
+      }
+    },
+    "barraca": {
+      "viewMenu": "Ver cardápio →",
+      "noMenu": "Cardápio não disponível",
+      "orderNow": "Pedir Agora",
+      "notFound": "Barraca não encontrada",
+      "returnHome": "Voltar para início",
+      "operatingHours": "Horário de Funcionamento",
+      "contact": "Contato",
+      "contactText": "Tem perguntas ou sugestões? Entre em contato conosco:",
+      "features": {
+        "title": "Recursos",
+        "realTime": "Status de disponibilidade em tempo real",
+        "digitalMenu": "Acesso ao cardápio digital",
+        "hours": "Horários de funcionamento precisos",
+        "listings": "Lista completa de barracas",
+        "accounts": "Contas de usuário com recursos personalizados"
+      },
+      "comingSoon": {
+        "title": "Em Breve",
+        "notifications": "Aplicativo móvel com notificações para suas barracas favoritas",
+        "reviews": "Avaliações e comentários dos clientes",
+        "ordering": "Sistema de pedidos diretos",
+        "loyalty": "Programa de fidelidade com benefícios exclusivos",
+        "recommendations": "Recomendações personalizadas"
+      }
+    }
+  },
+  "errors": {
+    "required": "Este campo é obrigatório",
+    "invalidEmail": "Por favor, insira um email válido",
+    "passwordLength": "A senha deve ter pelo menos 8 caracteres",
+    "somethingWentWrong": "Algo deu errado"
+  },
+  "messages": {
+    "successfulLogin": "Login realizado com sucesso",
+    "successfulLogout": "Logout realizado com sucesso",
+    "successfulSave": "Salvo com sucesso",
+    "successfulDelete": "Excluído com sucesso"
+  }
+} 

@@ -1,5 +1,6 @@
 import { getAvailabilityInfo } from '../utils/dateUtils';
 import './BarracaDetail.css';
+import { useTranslation } from 'react-i18next';
 
 interface OperatingHours {
   date: string; // YYYY-MM-DD
@@ -55,6 +56,8 @@ export const barracas: Barraca[] = [
 ];
 
 export const BarracaList = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="space-y-12">
@@ -62,30 +65,30 @@ export const BarracaList = () => {
           const availability = getAvailabilityInfo(barraca.hours);
 
           return (
-            <a href={`/barraca/${barraca.id}`}>
+            <a href={`/barraca/${barraca.id}`} key={barraca.id}>
               <div
-                key={barraca.id}
-                className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } gap-4 items-center mb-8`}
+                className={`flex flex-col-reverse ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } gap-4 items-center mb-8`}
               >
                 {/* Image Section */}
                 <div className="w-full md:w-1/2 relative group">
                   <div
                     className="w-full h-64 object-cover rounded-lg shadow-lg 
-                  cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
+                    cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
-                  >
-                  </div>
+                  />
                 </div>
 
                 {/* Details Section */}
                 <div className="w-full md:w-1/2 space-y-4">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0 mb-2">
                     <h2 className="text-2xl font-bold">{barraca.title}</h2>
-                    <div className={`px-3 py-1 rounded-full text-sm self-start md:self-auto ${availability.isOpen
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
-                      }`}>
+                    <div className={`px-3 py-1 rounded-full text-sm self-start md:self-auto ${
+                      availability.isOpen
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-red-100 text-red-800'
+                    }`}>
                       {availability.message}
                     </div>
                   </div>
@@ -98,11 +101,11 @@ export const BarracaList = () => {
                         rel="noopener noreferrer"
                         className="text-green-600 hover:text-green-700 z-1"
                       >
-                        View menu →
+                        {t('common.barraca.viewMenu')}
                       </a>
                     ) : (
                       <span className="text-gray-400 text-sm italic">
-                        No menu available
+                        {t('common.barraca.noMenu')}
                       </span>
                     )}
                     {barraca.paymentsEnabled && (
@@ -110,7 +113,7 @@ export const BarracaList = () => {
                         href={`/order/${barraca.id}`}
                         className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
                       >
-                        Order Now
+                        {t('common.barraca.orderNow')}
                       </a>
                     )}
                   </div>
