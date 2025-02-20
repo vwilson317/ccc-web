@@ -1,8 +1,10 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 import './ParallaxStyles.css';
+import { useTranslation } from 'react-i18next';
 
 export const ParallaxHero = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -55,7 +57,7 @@ export const ParallaxHero = () => {
       <div className="relative h-full flex items-center justify-center">
         <div className="text-center text-white p-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">Carioca Coastal Club</h1>
-          <p className="text-xl md:text-2xl">Barraca experience made easy</p>
+          <p className="text-xl md:text-2xl">{t("common.hero.subtitle")}</p>
         </div>
       </div>
     </div>

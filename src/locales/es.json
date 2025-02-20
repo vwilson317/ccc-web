@@ -1,7 +1,6 @@
 {
   "common": {
     "welcome": "Bienvenido",
-    "login": "Iniciar sesión",
     "signup": "Registrarse",
     "logout": "Cerrar sesión",
     "email": "Correo electrónico",
@@ -13,6 +12,9 @@
     "edit": "Editar",
     "search": "Buscar",
     "loading": "Cargando...",
+    "hero": {
+      "subtitle": "Tu destino único para todo lo relacionado con barracas en Río de Janeiro."
+    },
     "header": {
       "title": "Carioca Coastal Club",
       "menu": "Menú"
