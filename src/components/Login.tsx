@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiUser } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { Footer } from './Footer';
 import { useTranslation } from 'react-i18next';
