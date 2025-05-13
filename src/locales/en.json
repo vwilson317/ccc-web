@@ -12,6 +12,7 @@
     "edit": "Edit",
     "search": "Search",
     "loading": "Loading...", 
+    "or": "or",
     "hero": {
       "subtitle": "Get reward for visiting your favorite barracas in Rio de Janeiro."
     },
@@ -68,6 +69,13 @@
         "recommendations": "Personalized recommendations"
       }
     }
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password"
   },
   "errors": {
     "required": "This field is required",
