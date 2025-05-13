@@ -1,4 +1,4 @@
-import { FiUser, FiHome, FiInfo, FiLogIn, FiLogOut } from 'react-icons/fi';
+import { FiUser, FiHome, FiInfo, FiLogIn, FiLogOut, FiCalendar } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -41,7 +41,7 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
                 {/* User Profile Section */}
                 {user && (
                     <div className="p-4 border-b border-gray-200">
-                        <div className="flex items-center space-x-3 mb-4">
+                        <div className="flex items-center space-x-3">
                             <FiUser className="text-2xl text-blue-500" />
                             <div>
                                 <h3 className="font-medium">{user.username}</h3>
@@ -64,21 +64,11 @@ export const Drawer = ({ isOpen, onClose }: DrawerProps) => {
                                     className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
                                     onClick={onClose}
                                 >
-                                    <FiUser />
+                                    <FiCalendar />
                                     <span>Dashboard</span>
                                 </Link>
                             </li>
                         )}
-                        <li>
-                            <Link
-                                to="/"
-                                className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded"
-                                onClick={onClose}
-                            >
-                                <FiHome />
-                                <span>Barracas</span>
-                            </Link>
-                        </li>
                         <li>
                             <Link
                                 to="/info"

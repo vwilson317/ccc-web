@@ -13,8 +13,11 @@ import { Register } from './components/Register'
 import { OrderPage } from './components/OrderPage'
 import { CheckoutPage } from './components/CheckoutPage'
 import { AdminDashboard } from './components/AdminDashboard'
+import { useTranslation } from 'react-i18next'
 
 function App() {
+  const { t } = useTranslation()
+
   return (
     <Router>
       <Header />
@@ -29,7 +32,7 @@ function App() {
                 <form className="flex items-center gap-2 max-w-3xl mx-auto">
                   <input 
                     type="text" 
-                    placeholder="Search barracas..." 
+                    placeholder={t('common.search')} 
                     className="w-full p-2 rounded-md"
                   />
                   <select 

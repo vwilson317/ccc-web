@@ -132,8 +132,7 @@ export const OperatingHoursSection = ({ operatingHours, onOperatingHoursChange }
             
             <div className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium mb-1">Select Dates</label>
-                    <div className="calendar-wrapper w-full">
+                    <div className="calendar-wrapper w-full flex justify-center">
                         <DatePicker
                             selected={selectedDates[0] || new Date()}
                             onChange={(date) => handleDateChange(date || new Date())}

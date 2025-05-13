@@ -27,7 +27,7 @@ export const barracas: Barraca[] = [
     description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
     imageUrl: '/assets/barraca-80.jpg',
     hours: [
-      { date: "2025-01-20", open: "00:00", close: "23:59" },
+      { date: "2025-05-13", open: "00:00", close: "23:59" },
       { date: "2025-01-21", open: "09:00", close: "17:00" },
       { date: "2025-01-22", open: "09:00", close: "17:00" },
       { date: "2025-01-28", open: "09:00", close: "17:00" }
@@ -78,8 +78,8 @@ export const BarracaList = () => {
                 <div className="absolute top-0 right-0 p-2">
                   {
                     availability.isOpen ?
-                      <span className="px-3 py-1 rounded-full bg-green-500/50 text-white">Open</span> :
-                      <span className="px-3 py-1 rounded-full bg-red-500/50 text-white">Closed</span>
+                      <span className="px-3 py-1 rounded-full bg-green-500/85 text-white">Open</span> :
+                      <span className="px-3 py-1 rounded-full bg-red-500/85 text-white">Closed</span>
                   }
                 </div>
               </div>

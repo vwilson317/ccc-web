@@ -27,8 +27,6 @@ export const AdminDashboard = () => {
     return (
         <div className="container mx-auto px-4 py-8 pb-24">
             <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
-                
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <OperatingHoursSection 
                         operatingHours={operatingHours}
