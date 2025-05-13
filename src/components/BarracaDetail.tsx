@@ -2,8 +2,11 @@ import { useParams, Link } from 'react-router-dom';
 import { barracas } from './BarracaList';
 import { getAvailabilityInfo } from '../utils/dateUtils';
 import { Footer } from './Footer';
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 export const BarracaDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const barraca = barracas.find(item => item.id === Number(id));
 
@@ -11,9 +14,9 @@ export const BarracaDetail = () => {
     return (
       <div className="container mx-auto px-4 py-12">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Barraca not found</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('common.barraca.notFound')}</h2>
           <Link to="/" className="text-green-600 hover:text-green-700">
-            Return to home
+            {t('common.barraca.returnHome')}
           </Link>
         </div>
       </div>
@@ -45,12 +48,16 @@ export const BarracaDetail = () => {
 
             {barraca.hours && barraca.hours.length > 0 && (
               <div className="mt-8">
-                <h2 className="text-2xl font-semibold mb-4">Operating Hours</h2>
+                <h2 className="text-2xl font-semibold mb-4">{t('common.barraca.operatingHours')}</h2>
                 <div className="space-y-2">
                   {barraca.hours.map((hour, index) => (
                     <div key={index} className="flex justify-between border-b py-2">
                       <span className="font-medium">
-                        {new Date(hour.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                        {new Date(hour.date).toLocaleDateString(i18n.language, { 
+                          weekday: 'long', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
                       </span>
                       <span>{hour.open} - {hour.close}</span>
                     </div>
