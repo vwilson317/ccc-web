@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import { Analytics } from '@vercel/analytics/react'
 
 import { ParallaxHero } from './components/ParallaxHero'
 import { BarracaList } from './components/BarracaList'
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Header />
       <Toaster position="top-right" />
+      <Analytics />
       <main className="min-h-screen pt-12">
         <Routes>
           <Route path="/" element={
