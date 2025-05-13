@@ -25,6 +25,22 @@ function App() {
           <Route path="/" element={
             <>
               <ParallaxHero />
+              <div className="container mx-auto px-4 py-6">
+                <form className="flex items-center gap-2 max-w-3xl mx-auto">
+                  <input 
+                    type="text" 
+                    placeholder="Search barracas..." 
+                    className="w-full p-2 rounded-md"
+                  />
+                  <select 
+                    className="p-2 rounded-md"
+                  >
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </form>
+              </div>
               <BarracaList />
             </>
           } />

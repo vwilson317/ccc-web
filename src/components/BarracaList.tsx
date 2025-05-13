@@ -23,7 +23,7 @@ export interface Barraca {
 export const barracas: Barraca[] = [
   {
     id: 80,
-    title: "Uruguay (#80)",
+    title: "#80 - Uruguay",
     description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
     imageUrl: '/assets/barraca-80.jpg',
     hours: [
@@ -38,7 +38,7 @@ export const barracas: Barraca[] = [
   },
   {
     id: 20,
-    title: "Rasta (#20)",
+    title: "#20 - Rasta",
     description: "Another one of our favorites. If you're in leme it's always a good vibe.",
     imageUrl: '/assets/20-default.jpeg',
     hours: [
@@ -56,7 +56,7 @@ export const barracas: Barraca[] = [
 
 export const BarracaList = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-4">
       <div className="space-y-12">
         {barracas.map((barraca, index) => {
           const availability = getAvailabilityInfo(barraca.hours);
@@ -68,51 +68,14 @@ export const BarracaList = () => {
                 className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                   } gap-4 items-center mb-8`}
               >
-                {/* Image Section */}
                 <div className="w-full md:w-1/2 relative group">
                   <div
                     className="w-full h-64 object-cover rounded-lg shadow-lg 
                   cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
                   >
-                  </div>
-                </div>
+                    <h2 className="text-1xl font-bold text-white absolute bottom-0 left-0 p-2 bg-black/50">{barraca.title}</h2>
 
-                {/* Details Section */}
-                <div className="w-full md:w-1/2 space-y-4">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0 mb-2">
-                    <h2 className="text-2xl font-bold">{barraca.title}</h2>
-                    <div className={`px-3 py-1 rounded-full text-sm self-start md:self-auto ${availability.isOpen
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
-                      }`}>
-                      {availability.message}
-                    </div>
-                  </div>
-                  <p className="text-gray-600">{barraca.description}</p>
-                  <div className="flex items-center space-x-4">
-                    {barraca.menuUri ? (
-                      <a
-                        href={barraca.menuUri}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-green-600 hover:text-green-700 z-1"
-                      >
-                        View menu →
-                      </a>
-                    ) : (
-                      <span className="text-gray-400 text-sm italic">
-                        No menu available
-                      </span>
-                    )}
-                    {barraca.paymentsEnabled && (
-                      <a
-                        href={`/order/${barraca.id}`}
-                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
-                      >
-                        Order Now
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>
