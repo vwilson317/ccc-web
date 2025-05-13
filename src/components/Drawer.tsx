@@ -1,4 +1,4 @@
-import { FiUser, FiHome, FiInfo, FiLogIn, FiLogOut, FiCalendar } from 'react-icons/fi';
+import { FiUser, FiInfo, FiLogIn, FiLogOut, FiCalendar } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
