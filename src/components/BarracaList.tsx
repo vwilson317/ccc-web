@@ -61,25 +61,39 @@ export const BarracaList = () => {
         {barracas.map((barraca, index) => {
           const availability = getAvailabilityInfo(barraca.hours);
 
-          return (
-            <a href={`/barraca/${barraca.id}`}>
-              <div
-                key={barraca.id}
-                className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  } gap-4 items-center mb-8`}
-              >
-                <div className="w-full md:w-1/2 relative group">
-                  <div
-                    className="w-full h-64 object-cover rounded-lg shadow-lg 
-                  cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
-                  >
-                    <h2 className="text-1xl font-bold text-white absolute bottom-0 left-0 p-2 bg-black/50">{barraca.title}</h2>
-
-                  </div>
+          const content = (
+            <div
+              key={barraca.id}
+              className={`flex flex-col-reverse ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } gap-4 items-center mb-8`}
+            >
+              <div className="w-full md:w-1/2 relative group">
+                <div
+                  className={`w-full h-64 object-cover rounded-lg shadow-lg 
+                cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat ${!availability.isOpen ? 'grayscale' : ''}`}
+                  style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
+                >
+                  <h2 className="text-1xl font-bold text-white absolute bottom-0 left-0 p-2 bg-black/50">{barraca.title}</h2>
+                </div>
+                <div className="absolute top-0 right-0 p-2">
+                  {
+                    availability.isOpen ?
+                      <span className="px-3 py-1 rounded-full bg-green-500/50 text-white">Open</span> :
+                      <span className="px-3 py-1 rounded-full bg-red-500/50 text-white">Closed</span>
+                  }
                 </div>
               </div>
+            </div>
+          );
+
+          return availability.isOpen ? (
+            <a href={`/barraca/${barraca.id}`} key={barraca.id}>
+              {content}
             </a>
+          ) : (
+            <div key={barraca.id} className="cursor-not-allowed">
+              {content}
+            </div>
           );
         })}
       </div>

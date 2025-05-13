@@ -20,7 +20,7 @@ function App() {
       <Header />
       <Toaster position="top-right" />
       <Analytics />
-      <main className="min-h-screen pt-12">
+      <main className="min-h-screen pt-6">
         <Routes>
           <Route path="/" element={
             <>
