@@ -14,7 +14,7 @@ import { OrderPage } from './components/OrderPage'
 import { CheckoutPage } from './components/CheckoutPage'
 import { AdminDashboard } from './components/AdminDashboard'
 import { useTranslation } from 'react-i18next'
-
+import { ForgotPassword } from './components/ForgotPassword'
 function App() {
   const { t } = useTranslation()
 
@@ -54,6 +54,7 @@ function App() {
           <Route path="/order/:id" element={<OrderPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </main>
     </Router>

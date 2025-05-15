@@ -21,14 +21,15 @@
       "menu": "Menú"
     },
     "login": {
-      "title": "Iniciar Sesión",
+      "title": "Inicia sesión en tu cuenta",
       "username": "Nombre de usuario",
+      "email": "Correo electrónico",
       "password": "Contraseña",
-      "submit": "Entrar",
+      "submit": "Iniciar sesión",
       "noAccount": "¿No tienes una cuenta?",
-      "createAccount": "Crea una aquí",
-      "welcomeBack": "¡Bienvenido de nuevo, {name}!",
-      "welcomeAdmin": "¡Bienvenido de nuevo, Administrador!"
+      "createAccount": "Crea una",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "welcomeBack": "¡Bienvenido de nuevo, {{name}}!"
     },
     "info": {
       "aboutUs": "Sobre Nosotros",
@@ -75,18 +76,45 @@
     "username": "Nombre de usuario",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "confirmPassword": "Confirmar contraseña"
+    "confirmPassword": "Confirmar contraseña",
+    "createAccount": "Crear cuenta",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "loginHere": "Iniciar sesión aquí"
   },
   "errors": {
     "required": "Este campo es obligatorio",
     "invalidEmail": "Por favor, introduce un correo electrónico válido",
-    "passwordLength": "La contraseña debe tener al menos 8 caracteres",
-    "somethingWentWrong": "Algo salió mal"
+    "passwordLength": "La contraseña debe tener al menos 6 caracteres",
+    "somethingWentWrong": "Algo salió mal",
+    "enterEmail": "Por favor, introduce tu correo electrónico",
+    "magicCodeFailed": "Error al enviar el código mágico",
+    "resetTokenFailed": "Error al enviar el token de restablecimiento",
+    "invalidMagicCode": "Código mágico inválido o expirado",
+    "invalidResetToken": "Token de restablecimiento inválido o expirado",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden",
+    "passwordResetFailed": "Error al restablecer la contraseña",
+    "invalidCredentials": "Nombre de usuario o contraseña inválidos",
+    "loginFailed": "Error al iniciar sesión. Por favor, inténtalo de nuevo.",
+    "usernameLength": "El nombre de usuario debe tener al menos 3 caracteres",
+    "usernameExists": "El nombre de usuario ya existe",
+    "emailExists": "El correo electrónico ya existe",
+    "registrationFailed": "Error en el registro. Por favor, inténtalo de nuevo.",
+    "magicCodeInvalid": "Código mágico inválido",
+    "magicCodeExpired": "El código mágico ha expirado",
+    "userNotFound": "Usuario no encontrado",
+    "networkError": "Error de red. Por favor, verifica tu conexión.",
+    "serverError": "Error del servidor. Por favor, inténtalo más tarde.",
+    "invalidInput": "Por favor, verifica tu entrada e inténtalo de nuevo"
   },
   "messages": {
     "successfulLogin": "Sesión iniciada correctamente",
     "successfulLogout": "Sesión cerrada correctamente",
     "successfulSave": "Guardado correctamente",
-    "successfulDelete": "Eliminado correctamente"
+    "successfulDelete": "Eliminado correctamente",
+    "registrationSuccess": "¡Registro exitoso! Por favor, inicia sesión.",
+    "magicCodeSent": "¡Código mágico enviado! Por favor, revisa tu correo electrónico.",
+    "magicCodeVerified": "¡Código mágico verificado con éxito!",
+    "passwordResetSent": "Instrucciones de restablecimiento de contraseña enviadas a tu correo electrónico.",
+    "passwordResetSuccess": "¡Contraseña restablecida con éxito! Por favor, inicia sesión con tu nueva contraseña."
   }
 } 

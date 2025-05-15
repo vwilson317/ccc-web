@@ -76,11 +76,6 @@ export const Info = () => {
             </div>
 
             <Footer 
-                leftButton={{
-                    to: "/",
-                    label: "Back to Home",
-                    icon: true
-                }}
                 rightButton={{
                     to: "/register",
                     label: "Get Started"

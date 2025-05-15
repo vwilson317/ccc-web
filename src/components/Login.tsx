@@ -1,118 +1,66 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Footer } from './Footer';
 import { useTranslation } from 'react-i18next';
-import { init, tx, id } from '@instantdb/react';
+import { init } from '@instantdb/react';
 
 // Initialize InstantDB
 const APP_ID = import.meta.env.VITE_INSTANTDB_APP_ID || '';
 const db = init({ appId: APP_ID });
 
-interface User {
-    id: string;
-    username: string;
-    email: string;
-    isAdmin: boolean;
-}
-
 export const Login = () => {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
-    const [magicCode, setMagicCode] = useState('');
-    const [isMagicCodeLogin, setIsMagicCodeLogin] = useState(false);
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const { t } = useTranslation();
-
-    // Query users from InstantDB
-    const { data: usersData } = db.useQuery({
-        users: {
-            where: {
-                username: identifier
-            }
-        }
-    });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setIsLoading(true);
 
         try {
-            if (isMagicCodeLogin) {
-                // Verify magic code
-                const { data: magicCodeData } = await db.useQuery({
-                    magicCodes: {
-                        where: {
-                            code: magicCode,
-                            email: identifier,
-                            expiresAt: { gt: Date.now() }
-                        }
-                    }
-                });
-
-                if (!magicCodeData?.magicCodes?.length) {
-                    throw new Error('Invalid magic code');
-                }
-
-                // Get user data
-                const user = usersData?.users?.[0];
-                if (!user) {
-                    throw new Error('User not found');
-                }
-
-                // Delete used magic code
-                await db.transact(
-                    tx.magicCodes[magicCodeData.magicCodes[0].id].delete()
-                );
-
-                localStorage.setItem('user', JSON.stringify(user));
-                toast.success(t('common.login.welcomeBack', { name: user.username }));
-                navigate(user.isAdmin ? '/admin' : '/');
-            } else {
-                // Password login
-                const user = usersData?.users?.[0];
-                if (!user || user.password !== password) {
-                    throw new Error('Invalid credentials');
-                }
-
-                localStorage.setItem('user', JSON.stringify(user));
-                toast.success(t('common.login.welcomeBack', { name: user.username }));
-                navigate(user.isAdmin ? '/admin' : '/');
+            // Validate input
+            if (!identifier || !password) {
+                throw new Error('Please enter both username/email and password');
             }
+
+            // Authenticate user with InstantDB
+            const user = await db.auth.getUser(identifier, password);
+            if (!user) {
+                throw new Error('User not found');
+            }
+
+            // Store user data in localStorage (excluding password)
+            const userData = {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                isAdmin: user.isAdmin
+            };
+            localStorage.setItem('user', JSON.stringify(userData));
+
+            toast.success(t('common.login.welcomeBack', { name: user.username }));
+            navigate(user.isAdmin ? '/admin' : '/');
         } catch (err) {
-            setError(t('errors.invalidCredentials'));
+            const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred';
+            
+            // Map error messages to translations
+            if (errorMessage === 'User not found') {
+                setError(t('errors.userNotFound'));
+            } else if (errorMessage === 'Invalid password') {
+                setError(t('errors.invalidCredentials'));
+            } else if (errorMessage.includes('Please wait')) {
+                setError(t('errors.networkError'));
+            } else {
+                setError(t('errors.loginFailed'));
+            }
+            
             toast.error(t('errors.loginFailed'));
-        }
-    };
-
-    const handleMagicCodeRequest = async () => {
-        if (!identifier) {
-            setError(t('errors.enterEmail'));
-            return;
-        }
-
-        try {
-            // Generate a random 6-digit code
-            const code = Math.floor(100000 + Math.random() * 900000).toString();
-            const expiresAt = Date.now() + 15 * 60 * 1000; // 15 minutes
-
-            // Store magic code in InstantDB
-            await db.transact(
-                tx.magicCodes[id()].update({
-                    code,
-                    email: identifier,
-                    expiresAt,
-                    createdAt: Date.now()
-                })
-            );
-
-            // Here you would typically send the code via email
-            console.log('Magic code:', code); // For development only
-            toast.success(t('common.login.magicCodeSent'));
-        } catch (err) {
-            setError(t('errors.magicCodeFailed'));
-            toast.error(t('errors.magicCodeFailed'));
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -131,9 +79,21 @@ export const Login = () => {
                                 type="text"
                                 required
                                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder={t('common.login.username')  + ' ' + t('common.or') + ' ' + t('common.email')}
+                                placeholder={t('common.login.username') + ' ' + t('common.or') + ' ' + t('common.email')}
                                 value={identifier}
                                 onChange={(e) => setIdentifier(e.target.value)}
+                                disabled={isLoading}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                required
+                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                                placeholder={t('common.login.password')}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={isLoading}
                             />
                         </div>
                     </div>
@@ -143,10 +103,20 @@ export const Login = () => {
                     <div className="flex flex-col space-y-4">
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={isLoading}
                         >
-                            {t('common.login.submit')}
+                            {isLoading ? t('common.loading') : t('common.login.submit')}
                         </button>
+                        
+                        <div className="flex justify-center">
+                            <Link
+                                to="/forgot-password"
+                                className="text-sm text-blue-600 hover:text-blue-500"
+                            >
+                                {t('common.login.forgotPassword')}
+                            </Link>
+                        </div>
                     </div>
                 </form>
                 <div className="text-center">
@@ -158,14 +128,6 @@ export const Login = () => {
                     </p>
                 </div>
             </div>
-
-            <Footer
-                leftButton={{
-                    to: "/",
-                    label: "Back to Home",
-                    icon: true
-                }}
-            />
         </div>
     );
 };

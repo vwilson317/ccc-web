@@ -29,8 +29,8 @@ export const Footer = ({ leftButton, rightButton, total }: FooterProps) => {
     if (!button) return null;
 
     const className = button.className || 
-      `${isLeft ? 'text-green-600' : 'bg-green-600 text-white'} px-6 py-2 rounded-lg 
-       ${!isLeft && 'hover:bg-green-700'} flex items-center space-x-2`;
+      `${isLeft ? 'text-blue-600' : 'bg-blue-600 text-white'} px-6 py-2 rounded-lg 
+       ${!isLeft && 'hover:bg-blue-700'} flex items-center space-x-2`;
 
     const content = (
       <>

@@ -1,7 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Footer } from './Footer';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { init, tx, id } from '@instantdb/react';
+import toast from 'react-hot-toast';
+
+// Initialize InstantDB
+const APP_ID = import.meta.env.VITE_INSTANTDB_APP_ID || '';
+const db = init({ appId: APP_ID });
 
 export const Register = () => {
     const [formData, setFormData] = useState({
@@ -16,7 +21,21 @@ export const Register = () => {
         password: '',
         confirmPassword: ''
     });
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     const { t } = useTranslation();
+
+    // Query users from InstantDB at component level
+    const { data: existingUsers } = db.useQuery({
+        users: {
+            where: {
+                OR: [
+                    { username: formData.username },
+                    { email: formData.email }
+                ]
+            }
+        }
+    });
 
     const isValidEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,25 +53,25 @@ export const Register = () => {
 
         // Username validation
         if (formData.username.length < 3) {
-            newErrors.username = 'Username must be at least 3 characters long';
+            newErrors.username = t('errors.usernameLength');
             isValid = false;
         }
 
         // Email validation
         if (!isValidEmail(formData.email)) {
-            newErrors.email = 'Please enter a valid email address';
+            newErrors.email = t('errors.invalidEmail');
             isValid = false;
         }
 
         // Password validation
         if (formData.password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters long';
+            newErrors.password = t('errors.passwordLength');
             isValid = false;
         }
 
         // Confirm password validation
         if (formData.password !== formData.confirmPassword) {
-            newErrors.confirmPassword = 'Passwords do not match';
+            newErrors.confirmPassword = t('errors.passwordsDoNotMatch');
             isValid = false;
         }
 
@@ -60,11 +79,46 @@ export const Register = () => {
         return isValid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validateForm()) {
-            // Handle registration logic here
-            console.log('Form submitted:', formData);
+        if (!validateForm()) return;
+
+        setIsLoading(true);
+        try {
+            // Check if username or email already exists
+            if (existingUsers?.users && existingUsers.users.length > 0) {
+                const existingUser = existingUsers.users[0];
+                if (existingUser.username === formData.username) {
+                    setErrors(prev => ({ ...prev, username: t('errors.usernameExists') }));
+                }
+                if (existingUser.email === formData.email) {
+                    setErrors(prev => ({ ...prev, email: t('errors.emailExists') }));
+                }
+                setIsLoading(false);
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: id(),
+                username: formData.username,
+                email: formData.email,
+                password: formData.password,
+                isAdmin: false,
+                createdAt: Date.now()
+            };
+
+            await db.transact(
+                tx.users[newUser.id].update(newUser)
+            );
+
+            toast.success(t('messages.registrationSuccess'));
+            navigate('/login');
+        } catch (err) {
+            console.error('Registration error:', err);
+            toast.error(t('errors.registrationFailed'));
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -74,6 +128,13 @@ export const Register = () => {
             ...prev,
             [name]: value
         }));
+        // Clear error when user starts typing
+        if (errors[name as keyof typeof errors]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }));
+        }
     };
 
     return (
@@ -95,6 +156,7 @@ export const Register = () => {
                                 placeholder={t('register.username')}
                                 value={formData.username}
                                 onChange={handleChange}
+                                disabled={isLoading}
                             />
                             {errors.username && (
                                 <p className="text-red-500 text-sm mt-1">{errors.username}</p>
@@ -109,6 +171,7 @@ export const Register = () => {
                                 placeholder={t('register.email')}
                                 value={formData.email}
                                 onChange={handleChange}
+                                disabled={isLoading}
                             />
                             {errors.email && (
                                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -123,6 +186,7 @@ export const Register = () => {
                                 placeholder={t('register.password')}
                                 value={formData.password}
                                 onChange={handleChange}
+                                disabled={isLoading}
                             />
                             {errors.password && (
                                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
@@ -137,6 +201,7 @@ export const Register = () => {
                                 placeholder={t('register.confirmPassword')}
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
+                                disabled={isLoading}
                             />
                             {errors.confirmPassword && (
                                 <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
@@ -147,9 +212,10 @@ export const Register = () => {
                     <div>
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={isLoading}
                         >
-                            {t('register.submit')}
+                            {isLoading ? t('common.loading') : t('register.createAccount')}
                         </button>
                     </div>
                 </form>
@@ -162,14 +228,6 @@ export const Register = () => {
                     </p>
                 </div>
             </div>
-
-            <Footer 
-                leftButton={{
-                    to: "/",
-                    label: "Back to Home",
-                    icon: true
-                }}
-            />
         </div>
     );
 }; 
