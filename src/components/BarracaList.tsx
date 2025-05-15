@@ -1,5 +1,6 @@
 import { getAvailabilityInfo } from '../utils/dateUtils';
 import './BarracaDetail.css';
+import { barracas } from '../data/barracas';
 
 interface OperatingHours {
   date: string; // YYYY-MM-DD
@@ -20,40 +21,6 @@ export interface Barraca {
   acceptedPayments?: PaymentMethod[];
 }
 
-export const barracas: Barraca[] = [
-  {
-    id: 80,
-    title: "#80 - Uruguay",
-    description: "Creators personal favorite. They're always super friendly and wont rip off gringos :)",
-    imageUrl: '/assets/barraca-80.jpg',
-    hours: [
-      { date: "2025-05-13", open: "00:00", close: "23:59" },
-      { date: "2025-01-21", open: "09:00", close: "17:00" },
-      { date: "2025-01-22", open: "09:00", close: "17:00" },
-      { date: "2025-01-28", open: "09:00", close: "17:00" }
-    ],
-    menuUri: "/assets/80-menu.jpg",
-    paymentsEnabled: true,
-    acceptedPayments: ['VISA', 'PIX', 'PayPal']
-  },
-  {
-    id: 20,
-    title: "#20 - Rasta",
-    description: "Another one of our favorites. If you're in leme it's always a good vibe.",
-    imageUrl: '/assets/20-default.jpeg',
-    hours: [
-      { date: "2025-01-28", open: "09:00", close: "17:00" }
-    ]
-  },
-  {
-    id: 0,
-    title: "Testing (#0)",
-    description: `Mock barraca, not real. Just testing if most of the info is missing for a barraca. 
-    might make sense to not display it i there's no menu or operating hours.`,
-    imageUrl: "/assets/oh-crap.png"
-  }
-];
-
 export const BarracaList = () => {
   return (
     <div className="container mx-auto px-4 py-4">
@@ -69,7 +36,7 @@ export const BarracaList = () => {
             >
               <div className="w-full md:w-1/2 relative group">
                 <div
-                  className={`w-full h-64 object-cover rounded-lg shadow-lg 
+                  className={`w-full aspect-[3/4] object-cover rounded-lg shadow-lg 
                 cursor-pointer hover:opacity-90 transition-opacity bg-cover bg-center bg-no-repeat ${!availability.isOpen ? 'grayscale' : ''}`}
                   style={{ backgroundImage: `url(${new URL(barraca.imageUrl, import.meta.url).href})` }}
                 >
