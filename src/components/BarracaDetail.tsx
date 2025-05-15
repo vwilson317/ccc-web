@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { barracas } from './BarracaList';
+import { barracas } from '../data/barracas';
 import { getAvailabilityInfo } from '../utils/dateUtils';
 import { Footer } from './Footer';
 import { useTranslation } from 'react-i18next';

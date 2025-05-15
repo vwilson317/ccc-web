@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { barracas } from './BarracaList';
+import { barracas } from '../data/barracas';
 import { Footer } from './Footer';
 
 interface MenuItem {
