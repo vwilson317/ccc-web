@@ -116,5 +116,29 @@
     "magicCodeVerified": "Código mágico verificado com sucesso!",
     "passwordResetSent": "Instruções de redefinição de senha enviadas para seu e-mail.",
     "passwordResetSuccess": "Senha redefinida com sucesso! Por favor, faça login com sua nova senha."
+  },
+  "barracaList": {
+    "search": {
+      "placeholder": "Pesquisar barracas...",
+      "noResults": {
+        "title": "Nenhum Resultado Encontrado",
+        "withSearch": "Nenhuma barraca encontrada para '{{query}}'",
+        "andStatus": "e {{status}}",
+        "onlyStatus": "Nenhuma barraca {{status}} encontrada",
+        "inNeighborhood": "em {{neighborhood}}",
+        "onlyNeighborhood": "Nenhuma barraca encontrada em {{neighborhood}}",
+        "clearFilters": "Limpar Filtros"
+      }
+    },
+    "filters": {
+      "status": {
+        "all": "Todos os Status",
+        "open": "Aberta",
+        "closed": "Fechada"
+      },
+      "neighborhood": {
+        "all": "Todos"
+      }
+    }
   }
 } 

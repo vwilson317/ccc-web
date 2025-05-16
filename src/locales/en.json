@@ -119,5 +119,29 @@
   },
   "adminDashboard": {
     "title": "Admin Dashboard"
+  },
+  "barracaList": {
+    "search": {
+      "placeholder": "Search barracas...",
+      "noResults": {
+        "title": "No Results Found",
+        "withSearch": "No barracas found matching '{{query}}'",
+        "andStatus": "and {{status}}",
+        "onlyStatus": "No {{status}} barracas found",
+        "inNeighborhood": "in {{neighborhood}}",
+        "onlyNeighborhood": "No barracas found in {{neighborhood}}",
+        "clearFilters": "Clear Filters"
+      }
+    },
+    "filters": {
+      "status": {
+        "all": "All Status",
+        "open": "Open",
+        "closed": "Closed"
+      },
+      "neighborhood": {
+        "all": "All"
+      }
+    }
   }
 } 

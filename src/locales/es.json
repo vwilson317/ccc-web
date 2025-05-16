@@ -116,5 +116,29 @@
     "magicCodeVerified": "¡Código mágico verificado con éxito!",
     "passwordResetSent": "Instrucciones de restablecimiento de contraseña enviadas a tu correo electrónico.",
     "passwordResetSuccess": "¡Contraseña restablecida con éxito! Por favor, inicia sesión con tu nueva contraseña."
+  },
+  "barracaList": {
+    "search": {
+      "placeholder": "Buscar barracas...",
+      "noResults": {
+        "title": "No Se Encontraron Resultados",
+        "withSearch": "No se encontraron barracas que coincidan con '{{query}}'",
+        "andStatus": "y {{status}}",
+        "onlyStatus": "No se encontraron barracas {{status}}",
+        "inNeighborhood": "en {{neighborhood}}",
+        "onlyNeighborhood": "No se encontraron barracas en {{neighborhood}}",
+        "clearFilters": "Limpiar Filtros"
+      }
+    },
+    "filters": {
+      "status": {
+        "all": "Todos los Estados",
+        "open": "Abierta",
+        "closed": "Cerrada"
+      },
+      "neighborhood": {
+        "all": "Todos"
+      }
+    }
   }
 } 
