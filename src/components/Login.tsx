@@ -93,7 +93,7 @@ export const Login = () => {
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled={isLoading}
                             >
-                                {isLoading ? t('common.loading') : t('common.login.sendMagicCode')}
+                                {isLoading ? t('common.loading') : t('magicCode.sendCode')}
                             </button>
                         </div>
                     </form>
@@ -115,10 +115,10 @@ export const Login = () => {
             <div className="max-w-md w-full space-y-8">
                 <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                        {t('common.login.enterMagicCode')}
+                        {t('magicCode.title')}
                     </h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
-                        {t('common.login.magicCodeSentTo', { email: sentEmail })}
+                        {t('magicCode.codeSent', { email: sentEmail })}
                     </p>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleVerifyCode}>
@@ -128,7 +128,7 @@ export const Login = () => {
                                 type="text"
                                 required
                                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                                placeholder={t('common.login.magicCode')}
+                                placeholder={t('magicCode.codePlaceholder')}
                                 value={code}
                                 onChange={(e) => setCode(e.target.value)}
                                 disabled={isLoading}
@@ -144,7 +144,7 @@ export const Login = () => {
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             disabled={isLoading}
                         >
-                            {isLoading ? t('common.loading') : t('common.login.verifyCode')}
+                            {isLoading ? t('common.loading') : t('magicCode.verifyCode')}
                         </button>
                         
                         <button
@@ -152,7 +152,7 @@ export const Login = () => {
                             onClick={() => setSentEmail('')}
                             className="text-sm text-blue-600 hover:text-blue-500"
                         >
-                            {t('common.login.backToLogin')}
+                            {t('magicCode.backToLogin')}
                         </button>
                     </div>
                 </form>

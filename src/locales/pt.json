@@ -29,7 +29,23 @@
       "noAccount": "Não tem uma conta?",
       "createAccount": "Crie uma",
       "forgotPassword": "Esqueceu sua senha?",
-      "welcomeBack": "Bem-vindo de volta, {{name}}!"
+      "welcomeBack": "Bem-vindo de volta, {{name}}!",
+      "magicCodeTitle": "Login com Código Mágico",
+      "magicCode": "Código Mágico",
+      "sendMagicCode": "Enviar Código Mágico",
+      "verifyMagicCode": "Verificar Código Mágico",
+      "resendMagicCode": "Reenviar Código Mágico",
+      "magicCodeSent": "Código mágico enviado para seu email",
+      "resetToken": "Token de Redefinição",
+      "verifyResetToken": "Verificar Token de Redefinição",
+      "resendResetToken": "Reenviar Token de Redefinição",
+      "resetTokenSent": "Token de redefinição enviado para seu email",
+      "newPassword": "Nova Senha",
+      "confirmPassword": "Confirmar Senha",
+      "resetPassword": "Redefinir Senha",
+      "useMagicCode": "Usar Código Mágico",
+      "backToLogin": "Voltar para Login",
+      "clickHere": "Clique aqui"
     },
     "info": {
       "aboutUs": "Sobre Nós",
@@ -73,13 +89,15 @@
   },
   "register": {
     "title": "Cadastrar",
-    "username": "Nome de usuário",
     "email": "Email",
-    "password": "Senha",
-    "confirmPassword": "Confirmar senha",
-    "createAccount": "Criar conta",
+    "sendMagicCode": "Enviar Código Mágico",
     "haveAccount": "Já tem uma conta?",
-    "loginHere": "Faça login aqui"
+    "loginHere": "Faça login aqui",
+    "enterMagicCode": "Digite o Código Mágico",
+    "magicCodeSentTo": "Código mágico enviado para {{email}}",
+    "magicCode": "Código Mágico",
+    "verifyCode": "Verificar Código",
+    "backToRegister": "Voltar para Cadastro"
   },
   "errors": {
     "required": "Este campo é obrigatório",
@@ -137,8 +155,26 @@
         "closed": "Fechada"
       },
       "neighborhood": {
-        "all": "Todos"
+        "all": "Todos os Bairros",
+        "ipanema": "Ipanema",
+        "copacabana": "Copacabana",
+        "leme": "Leme",
+        "leblon": "Leblon"
       }
     }
+  },
+  "magicCode": {
+    "title": "Login com Código Mágico",
+    "description": "Digite seu email para receber um código mágico",
+    "emailPlaceholder": "Digite seu email",
+    "codePlaceholder": "Digite o código mágico",
+    "sendCode": "Enviar Código Mágico",
+    "verifyCode": "Verificar Código",
+    "resendCode": "Reenviar Código",
+    "codeSent": "Código mágico enviado para seu email",
+    "codeExpired": "Código mágico expirado",
+    "invalidCode": "Código mágico inválido",
+    "tryAgain": "Por favor, tente novamente",
+    "backToLogin": "Voltar para Login"
   }
 } 

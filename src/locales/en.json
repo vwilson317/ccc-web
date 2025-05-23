@@ -11,7 +11,7 @@
     "delete": "Delete",
     "edit": "Edit",
     "search": "Search",
-    "loading": "Loading...", 
+    "loading": "Loading...",
     "or": "or",
     "hero": {
       "subtitle": "Get reward for visiting your favorite barracas in Rio de Janeiro."
@@ -29,7 +29,23 @@
       "noAccount": "Don't have an account?",
       "createAccount": "Create one",
       "forgotPassword": "Forgot your password?",
-      "welcomeBack": "Welcome back, {{name}}!"
+      "welcomeBack": "Welcome back, {{name}}!",
+      "magicCodeTitle": "Magic Code Login",
+      "magicCode": "Magic Code",
+      "sendMagicCode": "Send Magic Code",
+      "verifyMagicCode": "Verify Magic Code",
+      "resendMagicCode": "Resend Magic Code",
+      "magicCodeSent": "Magic code sent to your email",
+      "resetToken": "Reset Token",
+      "verifyResetToken": "Verify Reset Token",
+      "resendResetToken": "Resend Reset Token",
+      "resetTokenSent": "Reset token sent to your email",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "resetPassword": "Reset Password",
+      "useMagicCode": "Use Magic Code Instead",
+      "backToLogin": "Back to Login",
+      "clickHere": "Click here"
     },
     "info": {
       "aboutUs": "About Us",
@@ -73,13 +89,15 @@
   },
   "register": {
     "title": "Register",
-    "username": "Username",
     "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "createAccount": "Create Account",
+    "sendMagicCode": "Send Magic Code",
     "haveAccount": "Already have an account?",
-    "loginHere": "Login here"
+    "loginHere": "Login here",
+    "enterMagicCode": "Enter Magic Code",
+    "magicCodeSentTo": "Magic code sent to {{email}}",
+    "magicCode": "Magic Code",
+    "verifyCode": "Verify Code",
+    "backToRegister": "Back to Register"
   },
   "errors": {
     "required": "This field is required",
@@ -140,8 +158,26 @@
         "closed": "Closed"
       },
       "neighborhood": {
-        "all": "All"
+        "all": "All Neighborhoods",
+        "ipanema": "Ipanema",
+        "copacabana": "Copacabana",
+        "leme": "Leme",
+        "leblon": "Leblon"
       }
     }
+  },
+  "magicCode": {
+    "title": "Magic Code Login",
+    "description": "Enter your email to receive a magic code",
+    "emailPlaceholder": "Enter your email",
+    "codePlaceholder": "Enter the magic code",
+    "sendCode": "Send Magic Code",
+    "verifyCode": "Verify Code",
+    "resendCode": "Resend Code",
+    "codeSent": "Magic code sent to your email",
+    "codeExpired": "Magic code has expired",
+    "invalidCode": "Invalid magic code",
+    "tryAgain": "Please try again",
+    "backToLogin": "Back to Login"
   }
 } 

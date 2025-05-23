@@ -29,7 +29,23 @@
       "noAccount": "¿No tienes una cuenta?",
       "createAccount": "Crea una",
       "forgotPassword": "¿Olvidaste tu contraseña?",
-      "welcomeBack": "¡Bienvenido de nuevo, {{name}}!"
+      "welcomeBack": "¡Bienvenido de nuevo, {{name}}!",
+      "magicCodeTitle": "Inicio de Sesión con Código Mágico",
+      "magicCode": "Código Mágico",
+      "sendMagicCode": "Enviar Código Mágico",
+      "verifyMagicCode": "Verificar Código Mágico",
+      "resendMagicCode": "Reenviar Código Mágico",
+      "magicCodeSent": "Código mágico enviado a tu correo electrónico",
+      "resetToken": "Token de Restablecimiento",
+      "verifyResetToken": "Verificar Token de Restablecimiento",
+      "resendResetToken": "Reenviar Token de Restablecimiento",
+      "resetTokenSent": "Token de restablecimiento enviado a tu correo electrónico",
+      "newPassword": "Nueva Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "resetPassword": "Restablecer Contraseña",
+      "useMagicCode": "Usar Código Mágico",
+      "backToLogin": "Volver al Inicio de Sesión",
+      "clickHere": "Haz clic aquí"
     },
     "info": {
       "aboutUs": "Sobre Nosotros",
@@ -73,13 +89,15 @@
   },
   "register": {
     "title": "Registrarse",
-    "username": "Nombre de usuario",
     "email": "Correo electrónico",
-    "password": "Contraseña",
-    "confirmPassword": "Confirmar contraseña",
-    "createAccount": "Crear cuenta",
+    "sendMagicCode": "Enviar Código Mágico",
     "haveAccount": "¿Ya tienes una cuenta?",
-    "loginHere": "Iniciar sesión aquí"
+    "loginHere": "Iniciar sesión aquí",
+    "enterMagicCode": "Ingresa el Código Mágico",
+    "magicCodeSentTo": "Código mágico enviado a {{email}}",
+    "magicCode": "Código Mágico",
+    "verifyCode": "Verificar Código",
+    "backToRegister": "Volver al Registro"
   },
   "errors": {
     "required": "Este campo es obligatorio",
@@ -137,8 +155,26 @@
         "closed": "Cerrada"
       },
       "neighborhood": {
-        "all": "Todos"
+        "all": "Todos los Barrios",
+        "ipanema": "Ipanema",
+        "copacabana": "Copacabana",
+        "leme": "Leme",
+        "leblon": "Leblon"
       }
     }
+  },
+  "magicCode": {
+    "title": "Inicio de Sesión con Código Mágico",
+    "description": "Ingresa tu correo electrónico para recibir un código mágico",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "codePlaceholder": "Ingresa el código mágico",
+    "sendCode": "Enviar Código Mágico",
+    "verifyCode": "Verificar Código",
+    "resendCode": "Reenviar Código",
+    "codeSent": "Código mágico enviado a tu correo electrónico",
+    "codeExpired": "El código mágico ha expirado",
+    "invalidCode": "Código mágico inválido",
+    "tryAgain": "Por favor, inténtalo de nuevo",
+    "backToLogin": "Volver al Inicio de Sesión"
   }
 } 
